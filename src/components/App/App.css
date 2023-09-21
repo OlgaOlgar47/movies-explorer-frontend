@@ -26,3 +26,24 @@
   cursor: pointer;
   opacity: .6;
 }
+
+.title {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  padding-bottom: 23px;
+  border-bottom: #DADADA 1px solid;
+}
+
+@media screen and (max-width: 678px) {
+  .title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding-bottom: 28px;
+    margin-bottom: 60px;
+  }
+}

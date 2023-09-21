@@ -89,7 +89,7 @@
     }
   }
   
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width:678px) {
     .promo__image {
       width: 210px;
       height: 206px;
