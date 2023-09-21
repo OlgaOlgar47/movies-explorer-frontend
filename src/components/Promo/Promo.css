@@ -1,0 +1,119 @@
+.promo {
+    background: #073042;
+    box-sizing: border-box;
+    padding: 50px 70px 63px;
+    height: 100%;
+  }
+  
+  .promo__container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 100%;
+  }
+
+  .promo__text-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .promo__title {
+    color: #fff;
+    margin: 0 0 36px;
+    max-width: 640px;
+    min-height: 174px;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+  }
+
+  .promo__paragraph {
+    margin: 0 0 146px;
+    padding: 0;
+    width: 310px;
+    font-size: 13px;
+    line-height: normal;
+    opacity: .5;
+  }
+  
+  .promo__image {
+    max-width: 310px;
+    max-height: 304px;
+  }
+
+  .promo__button-learn-more {
+    width: 129px;
+    height: 36px;
+    border-radius: 3px;
+    border: 1px solid #FFF;
+    opacity: 0.6;
+    background-color: transparent;
+    color: #FFF;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  .promo__button-learn-more:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    box-shadow: #000;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .promo__container {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+
+    .promo__image {
+      max-width: 310px;
+      max-height: 304px;
+    }
+  
+    .promo__title {
+      margin: 48px 0 22px auto;
+      font-size: 40px;
+      min-height: 100px;
+      text-align: center;
+    }
+
+    .promo__text-container {
+      align-items: center;
+      text-align: center;
+    }
+
+    .promo__paragraph {
+        margin-bottom: 92px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .promo__image {
+      width: 210px;
+      height: 206px;
+      margin-top: 70px;
+      margin-bottom: 44px;
+    }
+  
+    .promo {
+      padding: 0 10px 30px;
+      min-height: 636px;
+    }
+  
+    .promo__title {
+      margin: 0 0 24px;
+      font-size: 30px;
+      line-height: 38px;
+      min-width: 300px;
+      font-weight: 400;
+      letter-spacing: -1.2px;
+    }
+
+    .promo__paragraph {
+        margin-bottom: 80px;
+    }
+  }
+
+  

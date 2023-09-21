@@ -1,0 +1,28 @@
+.page {
+  font-family: "Inter", Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #202020;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.page__content {
+  margin: 0 auto;
+  min-height: 100vh;
+  max-width: 1280px;
+  min-width: 320px;
+  width: 100%;
+}
+
+.logo:hover {
+  cursor: pointer;
+  opacity: .6;
+}
