@@ -1,9 +1,8 @@
 import React from "react";
 import "./AboutMe.css";
-// import myFoto from "../../images/about-me.png";
+import gitHubURL from "../../constants";
 
 function AboutMe() {
-    const giHubURL = "https://github.com/OlgaOlgar47"
   return (
     <section className="about-me">
       <h2 className="title">Студент</h2>
@@ -21,7 +20,7 @@ function AboutMe() {
             После того, как прошёл курс по&nbsp;веб-разработке, начал заниматься
             фриланс-заказами и&nbsp;ушёл с&nbsp;постоянной работы.
           </p>
-          <a  href={giHubURL} className="about-me__github">Github</a>
+          <a  href={gitHubURL} className="about-me__github">Github</a>
         </div>
         <div className="student-foto"></div>
       </div>
