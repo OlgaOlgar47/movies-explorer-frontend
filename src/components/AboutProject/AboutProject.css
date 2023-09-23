@@ -6,8 +6,12 @@
 
 .about-project__text-container {
   display: flex;
-  gap: 30px;
+  gap: 0 40px;
   margin-bottom: 110px;
+}
+
+.about-project__paragraph-container {
+  max-width: 550px;
 }
 
 .about-project__paragraph-title {
@@ -48,6 +52,7 @@
 }
 
 .about-project__timeline-title_green {
+  min-width: 140px;
   background: #3ddc84;
   color: #000;
 }
@@ -70,46 +75,74 @@
     padding: 90px 50px;
   }
 
+  .about-project__text-container {
+    margin-bottom: 93px;
+    gap: 0 30px;
+  }
+
+  .about-project__paragraph-container {
+    max-width: 319px;
+  }
+
+  .about-project__paragraph-title {
+    margin-bottom: 22px;
+  }
+
+  .about-project__paragraph {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
   .about-project__timeline-subtitle {
     font-weight: 400;
-    color: #A0A0A0;
+    color: #a0a0a0;
   }
 }
 
 @media screen and (max-width: 678px) {
-    .about-project {
-      padding: 70px 18px;
-    }
-  
-    .about-project__timeline-subtitle {
-      font-weight: 400;
-      color: #A0A0A0;
-    }
-
-    .about-project__text-container {
-      flex-direction: column;
-      gap: 56px;
-      margin-bottom: 60px;
-    }
-
-    .about-project__paragraph-title {
-      margin: 0 0 16px;
-      font-size: 18px;
-      letter-spacing: -0.72px;
-    }
-
-    .about-project__paragraph {
-        line-height: 16px;
-        font-size: 11px;
-    }
-
-    .about-project__timeline-title {
-        font-size: 11px;
-        min-height: 35px;
-    }
-
-    .about-project__timeline-subtitle {
-      font-size: 11px;
-    }
-
+  .about-project {
+    padding: 70px 18px;
   }
+
+  .about-project__timeline-subtitle {
+    font-weight: 400;
+    color: #a0a0a0;
+  }
+
+  .about-project__text-container {
+    flex-direction: column;
+    gap: 56px;
+    margin-bottom: 60px;
+  }
+
+  .about-project__paragraph-title {
+    margin: 0 0 16px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .about-project__paragraph {
+    line-height: 16px;
+    font-size: 11px;
+  }
+
+  .about-project__timeline {
+    grid-template-columns: 100px 1fr;
+    gap: 10px 0;
+  }
+
+  .about-project__timeline-title {
+    font-size: 11px;
+    min-height: 35px;
+  }
+
+  .about-project__timeline-title_green {
+    min-width: 100px;
+  }
+
+  .about-project__timeline-subtitle {
+    font-size: 11px;
+  }
+
+ 
+}

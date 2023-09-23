@@ -4,11 +4,11 @@ import "./Techs.css";
 function Techs() {
   return (
     <section className="techs">
-      <h3 className="title">Технологии</h3>
+      <h3 className="title title_techs-mobile">Технологии</h3>
       <h2 className="techs__title">7&nbsp;технологий</h2>
       <p className="techs__subtitle">
         На&nbsp;курсе веб-разработки мы&nbsp;освоили технологии, которые
-        применили в&nbsp;дипломном проекте.
+        применили&nbsp;в дипломном проекте.
       </p>
       <ul className="techs__list">
         <li className="techs__list-item">HTML</li>

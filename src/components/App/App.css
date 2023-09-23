@@ -29,14 +29,12 @@
 
 .title {
   margin: 0;
-  color: #fff;
+  padding-bottom: 23px;
   font-size: 22px;
-  font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.88px;
-  padding-bottom: 23px;
-  border-bottom: #DADADA 1px solid;
+  border-bottom: 1px solid rgba(170, 170, 170, 0.4);
 }
 
 @media screen and (max-width: 678px) {
