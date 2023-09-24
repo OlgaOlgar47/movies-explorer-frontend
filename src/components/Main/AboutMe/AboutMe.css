@@ -43,14 +43,14 @@
 
 .about-me__github:hover {
   cursor: pointer;
-  opacity: 0.6;
+  opacity: .7;
 }
 
 .student-foto {
   width: 270px;
   height: 327px;
   object-fit: cover;
-  background: url("../../images/about-me.png");
+  background: url("../../../images/about-me.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

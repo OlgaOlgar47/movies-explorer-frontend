@@ -1,6 +1,6 @@
 import React from "react";
 import "./AboutMe.css";
-import gitHubURL from "../../constants";
+import gitHubURL from "../../../constants";
 
 function AboutMe() {
   return (

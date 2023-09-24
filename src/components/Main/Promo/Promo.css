@@ -33,7 +33,7 @@
   max-width: 310px;
   font-size: 13px;
   line-height: normal;
-  opacity: 0.5;
+  opacity: .7;
 }
 
 .promo__image {
@@ -46,7 +46,7 @@
   height: 36px;
   border-radius: 3px;
   border: 1px solid #fff;
-  opacity: 0.6;
+  opacity: .6;
   background-color: transparent;
   color: #fff;
   font-size: 12px;
@@ -57,7 +57,7 @@
 
 .promo__button-learn-more:hover {
   cursor: pointer;
-  opacity: 0.8;
+  opacity: .7;
   box-shadow: #000;
 }
 

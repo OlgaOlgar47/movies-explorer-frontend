@@ -1,5 +1,5 @@
 import React from "react";
-import landingImage from "../../images/landing-image.svg";
+import landingImage from "../../../images/landing-image.svg";
 import "./Promo.css";
 
 function Promo() {

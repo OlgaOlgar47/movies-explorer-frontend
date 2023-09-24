@@ -1,0 +1,72 @@
+.navigation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 67.71%;
+  height: 100%;
+  background-color: #202020;
+  z-index: 999;
+  transition: 0.8s ease-in-out;
+  transform: translateX(100%); /* Начальное состояние - скрыто */
+}
+.navigation.open {
+  transform: translateX(0); /* Появление при открытии */
+}
+
+.navigation__close-button {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  background-image: url("../../images/close-button.svg");
+  width: 22px;
+  height: 22px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.navigation__menu {
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 159px 90px 92px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation__container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.navigation__button {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+  width: max-content;
+  align-self: center;
+}
+
+.navigation__button:hover {
+  opacity: 0.7;
+}
+
+.navigation__button_active {
+  border-bottom: #fff 2px solid;
+}
+
+.navigation__profile {
+  width: 100px;
+  height: 32px;
+}
+
+.navigation__profile:hover {
+  opacity: 0.7;
+}
