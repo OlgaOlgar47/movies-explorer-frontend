@@ -55,6 +55,26 @@
   margin: 18px 0;
 }
 
+.card__save-button:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+
+.card__delete {
+  margin: 18px 0;
+  background: transparent;
+  border: none;
+  max-width: 100px;
+  min-height: 29px;
+  border-radius: 30px;
+  align-self: center;
+}
+
+.card__delete:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1024px) {
   .card__image {
     height: 190px;

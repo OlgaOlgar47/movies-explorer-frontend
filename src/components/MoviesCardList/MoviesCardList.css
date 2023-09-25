@@ -27,6 +27,7 @@
 .cards__button-more:hover {
   border: 3px solid #2be080;
   opacity: .7;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1024px) {
@@ -35,3 +36,10 @@
     gap: 35px 24px;
   }
 }
+
+@media screen and (max-width: 567px) {
+    .cards__list {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 16px;
+    }
+  }

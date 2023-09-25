@@ -8,7 +8,7 @@
 }
 
 .header_color {
-  background-color: #202020;;
+  background-color: #202020;
 }
 
 .header__buttons-container {
@@ -40,7 +40,7 @@
 
 .header__button:hover {
   cursor: pointer;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .header__button-green {
@@ -59,7 +59,7 @@
 }
 
 .header__burger-menu-button {
-  background: url('../../images/burger-menu-button.svg') no-repeat;
+  background: url("../../images/burger-menu-button.svg") no-repeat;
   width: 44px;
   height: 44px;
   display: none;
@@ -67,6 +67,10 @@
   border: none;
 }
 
+.header__burger-menu-button:hover {
+  cursor: pointer;
+  opacity: .7;
+}
 
 @media screen and (max-width: 1024px) {
   .header {
@@ -84,7 +88,6 @@
   .header__button_active {
     border-bottom: #fff 2px solid;
   }
-
 }
 
 @media screen and (max-width: 567px) {
@@ -103,5 +106,11 @@
 
   .header__button-green {
     min-width: 54px;
+  }
+
+  .header__burger-menu-button {
+    background: url("../../images/burger-button-mobile.svg") no-repeat;
+    width: 40px;
+    height: 43px;
   }
 }

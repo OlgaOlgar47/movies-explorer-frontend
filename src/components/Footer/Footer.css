@@ -63,6 +63,10 @@
     gap: 12px;
   }
 
+  .footer__link {
+    font-size: 12px;
+  }
+
   .footer__copyright {
     margin-top: 18px;
     font-size: 12px;
