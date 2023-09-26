@@ -1,15 +1,37 @@
-.navigation {
+.navigation__overlay {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 0;
   right: 0;
-  width: 67.71%;
-  height: 100vh;
-  background-color: #202020;
+  width: 100%;
+  opacity: 0.3;
+  background: #000;
   z-index: 999;
+}
+
+.navigation__container {
+  flex: 1 1 auto;
+}
+
+.navigation__menu {
+  position: relative;
+
+  box-sizing: border-box;
+  width: 520px;
+  background: #202020;
+  height: 100vh;
+  padding: 159px 90px 92px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+  justify-content: space-between;
   transition: 0.8s ease-in-out;
   transform: translateX(100%); /* Начальное состояние - скрыто */
 }
-.navigation.open {
+
+.navigation__menu.open {
   transform: translateX(0); /* Появление при открытии */
 }
 
@@ -27,17 +49,7 @@
   cursor: pointer;
 }
 
-.navigation__menu {
-  box-sizing: border-box;
-  height: 100vh;
-  padding: 159px 90px 92px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navigation__container {
+.navigation__links {
   display: flex;
   flex-direction: column;
   gap: 28px;

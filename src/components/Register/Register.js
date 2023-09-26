@@ -1,8 +1,19 @@
 import React from "react";
-import "./Register.css";
+import Form from "../Form/Form";
 
 function Register() {
-  return <section className="register"></section>;
+  return (
+    <Form
+      isRegister={true}
+      title="Добро пожаловать!"
+      name="Виталий"
+      email="pochta@yandex.ru"
+      submitText="Зарегистрироваться"
+      link="/signin"
+      formText="Уже зарегистрированы?"
+      linkText="Войти"
+    />
+  );
 }
 
 export default Register;
