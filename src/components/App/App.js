@@ -6,8 +6,8 @@ import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
-// import Register from "../Register/Register";
-// import Login from "../Login/Login";
+import Register from "../Register/Register";
+import Login from "../Login/Login";
 import Footer from "../Footer/Footer";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
@@ -43,8 +43,8 @@ function App() {
             path="/profile"
             element={<Profile name="Виталий" email="pochta@yandex.ru" />}
           />
-          {/* <Route path="/signup" element={<Register />}/> */}
-          {/* <Route path="/signin" element={<Login />} /> */}
+          <Route path="/signup" element={<Register />}/>
+          <Route path="/signin" element={<Login />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         {showFooter() && <Footer />}
