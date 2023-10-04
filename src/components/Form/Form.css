@@ -12,6 +12,10 @@
   margin: 0 0 40px;
 }
 
+.form__logo:hover {
+  opacity: 0.7;
+}
+
 .form__title {
   font-size: 24px;
   font-weight: 500;
@@ -75,6 +79,10 @@
   margin: 128px 0 16px;
 }
 
+.form__submit-button_login {
+  margin-top: 197px;
+}
+
 .form__submit-button:hover {
   cursor: pointer;
   opacity: 0.7;
@@ -109,4 +117,50 @@
 .form__subtitle-link:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+@media screen and (max-width: 1024px) {
+  .form {
+    padding: 238px 0;
+  }
+}
+
+@media screen and (max-width:567px) {
+  .form {
+    padding: 56px 30px;
+  }
+
+  .form__logo {
+    align-self: center;
+    margin-bottom: 50px;
+  }
+  
+  .form__title {
+    align-self: center;
+    margin-bottom: 80px;
+  }
+
+  .form__subtitle {
+    height: 15px;
+    gap: 7px;
+  }
+
+  .form__submit-button {
+    width: 260px;
+    font-size: 12px;
+    margin: 216px 0 14px;
+  }
+
+  .form__submit-button_login {
+    margin-top: 285px;
+  }
+
+  .form__subtitle-text {
+    font-size: 12px;
+  }
+
+  .form__subtitle-link {
+    font-size: 12px;
+  }
+  
 }

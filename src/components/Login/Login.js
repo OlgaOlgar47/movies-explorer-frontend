@@ -11,6 +11,7 @@ function Login() {
       link="/signup"
       formText="Ещё не зарегистрированы?"
       linkText="Регистрация"
+      submitButtonForLogin="form__submit-button_login"
     />
   );
 }

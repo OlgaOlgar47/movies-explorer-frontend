@@ -12,10 +12,13 @@ function Form({
   link,
   formText,
   linkText,
+  submitButtonForLogin,
 }) {
   return (
     <form className="form">
-      <img src={logo} alt="логотип сайта" className="form__logo"></img>
+      <Link to="/" className="form__logo">
+        <img src={logo} alt="логотип сайта"></img>
+      </Link>
       <h3 className="form__title">{title}</h3>
       {isRegister ? (
         <label className="form__label">
@@ -57,9 +60,14 @@ function Form({
           placeholder=""
           required
         ></input>
-        <span className="form__input-error form__input-error_active">Что-то пошло не так...</span>
+        <span className="form__input-error form__input-error_active">
+          Что-то пошло не так...
+        </span>
       </label>
-      <button type="submit" className="form__submit-button">
+      <button
+        type="submit"
+        className={`form__submit-button ${submitButtonForLogin}`}
+      >
         {submitText}
       </button>
       <div className="form__subtitle">
