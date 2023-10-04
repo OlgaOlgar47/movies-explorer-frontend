@@ -57,7 +57,7 @@ function Form({
           className="form__input"
           id="password"
           name="password"
-          placeholder=""
+          placeholder="Введите пароль"
           required
         ></input>
         <span className="form__input-error form__input-error_active">

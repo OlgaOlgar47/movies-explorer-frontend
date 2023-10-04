@@ -1,38 +1,25 @@
 .navigation__overlay {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   width: 100%;
-  opacity: 0.3;
-  background: #000;
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: 999;
 }
 
-.navigation__container {
-  flex: 1 1 auto;
-}
-
 .navigation__menu {
-  position: relative;
-
   box-sizing: border-box;
+  padding: 159px 90px 90px 90px;
   width: 520px;
-  background: #202020;
-  height: 100vh;
-  padding: 159px 90px 92px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  background: #202020;
+  position: relative;
   align-items: center;
-  justify-content: space-between;
+  min-height: 100vh;
   transition: 0.8s ease-in-out;
-  transform: translateX(100%); /* Начальное состояние - скрыто */
-}
-
-.navigation__menu.open {
-  transform: translateX(0); /* Появление при открытии */
 }
 
 .navigation__close-button {
@@ -49,10 +36,16 @@
   cursor: pointer;
 }
 
+.navigation__close-button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 .navigation__links {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  align-items: center;
+  gap: 22px;
 }
 
 .navigation__button {
@@ -75,6 +68,7 @@
 }
 
 .navigation__profile {
+  margin-top: 621px;
   width: 100px;
   height: 32px;
 }
@@ -84,7 +78,12 @@
 }
 
 @media screen and (max-width: 567px) {
-  .navigation {
-    width: 100%;
+  .navigation__menu {
+    padding: 144px 10px 46px;
+    max-width: 320px;
+  }
+
+  .navigation__profile {
+    margin-top: 444px;
   }
 }

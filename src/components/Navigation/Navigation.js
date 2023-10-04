@@ -11,19 +11,19 @@ function Navigation({ onClose }) {
     <section className="navigation">
       <div className="navigation__overlay">
         <div className="navigation__container">
-          <div className={`navigation__menu ${onClose ? "open" : ""}`}>
+          <div className="navigation__menu">
             <button
               className="navigation__close-button"
               onClick={onClose}
             ></button>
             <nav className="navigation__links">
-              <NavLink to="/" className={setActive}>
+              <NavLink exact to="/" className={setActive}>
                 Главная
               </NavLink>
-              <NavLink to="/movies" className={setActive}>
+              <NavLink exact to="/movies" className={setActive}>
                 Фильмы
               </NavLink>
-              <NavLink to="/saved-movies" className={setActive}>
+              <NavLink exact to="/saved-movies" className={setActive}>
                 Сохранённые фильмы
               </NavLink>
               <Link to="/profile" className="navigation__profile">

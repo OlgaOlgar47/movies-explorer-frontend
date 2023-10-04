@@ -113,17 +113,20 @@
     flex-direction: column;
     gap: 56px;
     margin-bottom: 60px;
+    transition: 1s ease-in-out;
   }
 
   .about-project__paragraph-title {
     margin: 0 0 16px;
     font-size: 18px;
     letter-spacing: -0.72px;
+    transition: 1s ease-in-out;
   }
 
   .about-project__paragraph {
     line-height: 16px;
     font-size: 11px;
+    transition: 1s ease-in-out;
   }
 
   .about-project__timeline {

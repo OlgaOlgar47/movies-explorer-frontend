@@ -25,6 +25,7 @@
   font-weight: 400;
   font-size: 50px;
   line-height: 58px;
+  transition: 1s ease-in-out;
 }
 
 .promo__subtitle {
@@ -39,6 +40,7 @@
 .promo__image {
   max-width: 310px;
   max-height: 304px;
+  transition: 1s ease-in-out;
 }
 
 .promo__button-learn-more {

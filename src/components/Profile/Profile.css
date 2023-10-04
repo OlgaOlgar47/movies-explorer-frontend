@@ -60,6 +60,11 @@
   margin: 220px 0 16px;
 }
 
+.profile__button-save:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 .profile__button-logout {
   color: #ee3465;
   text-align: center;
@@ -68,6 +73,11 @@
   background: #202020;
   background: #202020;
   border: none;
+}
+
+.profile__button-logout:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 1024px) {
@@ -87,6 +97,7 @@
   .profile__button-save {
     margin-top: 210px;
   }
+
 }
 
 @media screen and (max-width: 678px) {

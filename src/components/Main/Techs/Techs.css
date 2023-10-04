@@ -60,6 +60,7 @@
   .techs__title {
     margin-top: 80px;
     margin-bottom: 22px;
+    transition: 1s ease-in-out;
   }
 
   .techs__subtitle {
@@ -68,6 +69,7 @@
     line-height: 18px;
     letter-spacing: -0.48px;
     max-width: 460px;
+    transition: 1s ease-in-out;
   }
 
   .techs__list {
