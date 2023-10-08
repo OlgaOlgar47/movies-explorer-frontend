@@ -1,7 +1,6 @@
 .search-form {
-  padding: 70px 0 51px;
+  padding: 70px 0 43px;
   border-bottom: rgba(170, 170, 170, 0.2) 1px solid;
-  margin-bottom: 10px;
 }
 
 .search-form__form {
@@ -54,6 +53,11 @@
 }
 
 @media screen and (max-width: 567px) {
+  .search-form {
+   padding-left: 4px;
+   padding-right: 4px;
+  }
+
   .search-form__form {
     padding: 6px;
     margin-bottom: 30px;

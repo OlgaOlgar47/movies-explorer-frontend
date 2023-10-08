@@ -7,11 +7,11 @@ function NotFoundPage() {
  const goBack = () => navigate(-1);
 
   return (
-    <div className="not-found-page">
-      <div className="not-found-page__error-status">404</div>
+    <main className="not-found-page">
+      <h1 className="not-found-page__error-status">404</h1>
       <p className="not-found-page__text">Страница не найдена</p>
-      <button className="not-found-page__go-back-button" onClick={goBack}>Назад</button>
-    </div>
+      <button type="button" className="not-found-page__go-back-button" onClick={goBack}>Назад</button>
+    </main>
   );
 }
 

@@ -13,6 +13,7 @@ function Navigation({ onClose }) {
         <div className="navigation__container">
           <div className="navigation__menu">
             <button
+              type="button"
               className="navigation__close-button"
               onClick={onClose}
             ></button>

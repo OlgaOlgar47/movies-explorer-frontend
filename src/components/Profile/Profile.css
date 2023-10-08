@@ -66,6 +66,7 @@
 }
 
 .profile__button-logout {
+  text-decoration: none;
   color: #ee3465;
   text-align: center;
   font-size: 13px;
@@ -83,7 +84,7 @@
 @media screen and (max-width: 1024px) {
   .profile {
     padding: 236px 0 269px;
-    max-width: 260px;
+    max-width: 410px;
   }
 
   .profile__title {

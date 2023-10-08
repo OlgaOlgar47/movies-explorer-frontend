@@ -82,11 +82,12 @@ function Header() {
             >
               <img
                 src={profileDark}
-                className="profile__icon"
+                className="header__profile-icon"
                 alt="Иконка аккаунта"
               ></img>
             </Link>
             <button
+              type="button"
               className="header__burger-menu-button"
               onClick={handleOpenBurgerMenu}
             ></button>

@@ -15,7 +15,7 @@ function Promo() {
             создателя.
           </p>
           <a href="#AboutProject">
-            <button className="promo__button-learn-more">Узнать больше</button>
+            <button type="button" className="promo__button-learn-more">Узнать больше</button>
           </a>
         </div>
         <img

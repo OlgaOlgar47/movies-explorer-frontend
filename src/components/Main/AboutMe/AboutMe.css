@@ -8,6 +8,10 @@
   margin-top: 66px;
 }
 
+.about-me__text-container {
+  align-self: center;
+}
+
 .about-me__title {
   font-size: 50px;
   font-weight: 400;

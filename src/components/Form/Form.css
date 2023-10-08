@@ -46,6 +46,13 @@
   outline: none;
   border-bottom: #424242 1px solid;
 }
+/* Стилизация обводки (outline) для активированных элементов формы */
+.form__input:focus {
+  outline: 2px solid #00d4ad;
+  box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+}
+
 
 .form__input-error {
   position: absolute;
@@ -77,6 +84,7 @@
   font-weight: 500;
   line-height: normal;
   margin: 128px 0 16px;
+  align-self: center;
 }
 
 .form__submit-button_login {

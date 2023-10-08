@@ -20,6 +20,11 @@
   border-bottom: #424242 1px solid;
 }
 
+.portfolio__link:last-child {
+  border: none;
+  padding-bottom: 0;
+}
+
 .portfolio__link-name {
   margin: 0;
   font-size: 30px;

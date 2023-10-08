@@ -11,11 +11,11 @@ function MoviesCard({ name, duration, image, isSaved }) {
       </div>
       <img src={image} className="card__image" alt="картинка фильма"></img>
       {isSaved ? (
-        <button className="card__delete">
+        <button type="button" className="card__delete">
           <img src={savedMovieImage} alt="кнопка удаления сохраненного фильма"></img>
         </button>
       ) : (
-        <button className="card__save-button">Сохранить</button>
+        <button type="button" className="card__save-button">Сохранить</button>
       )}
     </div>
   );

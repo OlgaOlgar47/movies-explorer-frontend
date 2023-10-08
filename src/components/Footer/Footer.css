@@ -1,5 +1,5 @@
 .footer {
-  margin: 79px 70px 20px;
+  padding: 79px 70px 20px;
 }
 
 .footer__title {
@@ -10,6 +10,7 @@
   font-weight: 400;
   line-height: normal;
   padding: 0 0 20px;
+  margin: 0;
   border-bottom: #424242 1px solid;
 }
 
@@ -42,13 +43,13 @@
 
 @media screen and (max-width: 1024px) {
   .footer {
-    margin: 79px 30px 20px;
+    padding: 79px 30px 20px;
   }
 }
 
 @media screen and (max-width: 678px) {
   .footer {
-    margin: 79px 10px 20px;
+    padding: 79px 10px 20px;
   }
 
   .footer__title {

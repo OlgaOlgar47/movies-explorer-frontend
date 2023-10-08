@@ -60,10 +60,13 @@
 .promo__button-learn-more:hover {
   cursor: pointer;
   opacity: .7;
-  box-shadow: #000;
 }
 
 @media screen and (max-width: 1024px) {
+  .promo {
+    padding: 140px 0 76px;
+  }
+
   .promo__container {
     flex-direction: column-reverse;
     align-items: center;

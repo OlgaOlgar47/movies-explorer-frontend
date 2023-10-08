@@ -17,7 +17,11 @@ function Portfolio() {
         rel="noreferrer"
       >
         <p className="portfolio__link-name">Статичный сайт</p>
-        <img src={arrow} className="portfolio__link-arrow" alt="Стрелочка для ссылки"></img>
+        <img
+          src={arrow}
+          className="portfolio__link-arrow"
+          alt="Стрелочка для ссылки"
+        ></img>
       </a>
       <a
         href={responsiveWebSite}
@@ -26,7 +30,11 @@ function Portfolio() {
         rel="noreferrer"
       >
         <p className="portfolio__link-name">Адаптивный сайт</p>
-        <img src={arrow} className="portfolio__link-arrow" alt="Стрелочка для ссылки"></img>
+        <img
+          src={arrow}
+          className="portfolio__link-arrow"
+          alt="Стрелочка для ссылки"
+        ></img>
       </a>
       <a
         href={SPA}
@@ -35,7 +43,11 @@ function Portfolio() {
         rel="noreferrer"
       >
         <p className="portfolio__link-name">Одностраничное приложение</p>
-        <img src={arrow} className="portfolio__link-arrow" alt="Стрелочка для ссылки"></img>
+        <img
+          src={arrow}
+          className="portfolio__link-arrow"
+          alt="Стрелочка для ссылки"
+        ></img>
       </a>
     </section>
   );

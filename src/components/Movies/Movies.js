@@ -5,10 +5,10 @@ import './Movies.css';
 
 function Movies() {
   return (
-    <section Movies className="movies">
+    <main Movies className="movies">
     <SearchForm />
     <MoviesCardList />  
-    </section>
+    </main>
   )
 }
 

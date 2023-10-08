@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .page {
   font-family: "Inter", Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
