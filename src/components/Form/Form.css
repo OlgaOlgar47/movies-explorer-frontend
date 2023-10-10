@@ -1,0 +1,174 @@
+.form {
+  padding: 70px 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 396px;
+}
+
+.form__logo {
+  width: 38px;
+  height: 38px;
+  margin: 0 0 40px;
+}
+
+.form__logo:hover {
+  opacity: 0.7;
+}
+
+.form__title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0 0 40px;
+}
+
+.form__label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #8b8b8b;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 0 24px;
+}
+
+.form__input {
+  position: relative;
+  color: #fff;
+  background: #202020;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  padding: 5px 0 10px;
+  border: none;
+  outline: none;
+  border-bottom: #424242 1px solid;
+}
+/* Стилизация обводки (outline) для активированных элементов формы */
+.form__input:focus {
+  outline: 2px solid #00d4ad;
+  box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+}
+
+
+.form__input-error {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  color: #ee3465;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  height: 12px;
+  margin: 6px 0;
+  visibility: hidden;
+}
+
+.form__input-error_active {
+  visibility: visible;
+}
+
+.form__submit-button {
+  width: 396px;
+  height: 45px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 3px;
+  background: #4285f4;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 128px 0 16px;
+  align-self: center;
+}
+
+.form__submit-button_login {
+  margin-top: 197px;
+}
+
+.form__submit-button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.form__subtitle {
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.form__subtitle-text {
+  margin: 0;
+  padding: 0;
+  color: #8b8b8b;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.form__subtitle-link {
+  color: #4285f4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.form__subtitle-link:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 1024px) {
+  .form {
+    padding: 238px 0;
+  }
+}
+
+@media screen and (max-width:567px) {
+  .form {
+    padding: 56px 30px;
+  }
+
+  .form__logo {
+    align-self: center;
+    margin-bottom: 50px;
+  }
+  
+  .form__title {
+    align-self: center;
+    margin-bottom: 80px;
+  }
+
+  .form__subtitle {
+    height: 15px;
+    gap: 7px;
+  }
+
+  .form__submit-button {
+    width: 260px;
+    font-size: 12px;
+    margin: 216px 0 14px;
+  }
+
+  .form__submit-button_login {
+    margin-top: 285px;
+  }
+
+  .form__subtitle-text {
+    font-size: 12px;
+  }
+
+  .form__subtitle-link {
+    font-size: 12px;
+  }
+  
+}
