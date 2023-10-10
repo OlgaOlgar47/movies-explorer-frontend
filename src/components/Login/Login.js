@@ -3,6 +3,7 @@ import Form from "../Form/Form";
 
 function Login() {
   return (
+    <section>
     <Form
       isRegister={false}
       title="Рады видеть!"
@@ -13,6 +14,7 @@ function Login() {
       linkText="Регистрация"
       submitButtonForLogin="form__submit-button_login"
     />
+    </section>
   );
 }
 

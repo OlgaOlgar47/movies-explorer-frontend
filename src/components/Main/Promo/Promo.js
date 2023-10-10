@@ -14,9 +14,7 @@ function Promo() {
             Листайте ниже, чтобы узнать больше про этот проект и&nbsp;его
             создателя.
           </p>
-          <a href="#AboutProject">
-            <button type="button" className="promo__button-learn-more">Узнать больше</button>
-          </a>
+          <a href="#AboutProject" className="promo__button-learn-more">Узнать больше</a>
         </div>
         <img
           className="promo__image"

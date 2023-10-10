@@ -15,7 +15,6 @@ function Form({
   submitButtonForLogin,
 }) {
   return (
-    <main>
       <form className="form">
         <Link to="/" className="form__logo">
           <img src={logo} alt="логотип сайта"></img>
@@ -78,7 +77,6 @@ function Form({
           </Link>
         </div>
       </form>
-    </main>
   );
 }
 

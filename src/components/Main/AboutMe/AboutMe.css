@@ -59,6 +59,8 @@
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 10px;
+  align-self: center;
+  transition: 0.8s ease-in-out;
 }
 
 @media screen and (max-width: 1024px) {

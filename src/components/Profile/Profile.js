@@ -4,7 +4,8 @@ import "./Profile.css";
 
 function Profile({ name, email }) {
   return (
-    <main className="profile">
+    <main>
+    <section className="profile">
       <h1 className="profile__title">Привет, {name}!</h1>
       <form className="profile__form" noValidate>
         <div className="profile__input-container">
@@ -41,6 +42,7 @@ function Profile({ name, email }) {
           Выйти из аккаунта
         </Link>
       </form>
+      </section>
     </main>
   );
 }

@@ -1,7 +1,7 @@
 .promo {
   background: #073042;
   box-sizing: border-box;
-  padding: 50px 70px 63px;
+  padding: 75px 70px;
   height: 100%;
 }
 
@@ -44,12 +44,15 @@
 }
 
 .promo__button-learn-more {
+  text-align: center;
+  box-sizing: border-box;
+  padding: 10px;
+  text-decoration: none;
   width: 129px;
   height: 36px;
   border-radius: 3px;
   border: 1px solid #fff;
   opacity: .6;
-  background-color: transparent;
   color: #fff;
   font-size: 12px;
   font-style: normal;

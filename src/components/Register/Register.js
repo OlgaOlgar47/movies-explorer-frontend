@@ -3,6 +3,7 @@ import Form from "../Form/Form";
 
 function Register() {
   return (
+    <section>
     <Form
       isRegister={true}
       title="Добро пожаловать!"
@@ -13,6 +14,7 @@ function Register() {
       formText="Уже зарегистрированы?"
       linkText="Войти"
     />
+    </section>
   );
 }
 

@@ -41,13 +41,11 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1024px) {
-  .not-found-page {
-    min-height: 1024px;
-  }
-}
-
 @media screen and (max-width: 567px) {
+  .not-found-page {
+    padding: 329px 0 10px;
+  }
+
   .not-found-page__error-status {
     width: 300px;
     font-size: 80px;

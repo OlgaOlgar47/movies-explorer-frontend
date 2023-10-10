@@ -4,7 +4,7 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm() {
   return (
-    <section className="search-form">
+    <div className="search-form">
       <form className="search-form__form" id="form">
           <input
             className="search-form__input"
@@ -20,7 +20,7 @@ function SearchForm() {
       </form>
       <FilterCheckbox />
       <span className="search-form__error">Введите название фильма</span>
-    </section>
+    </div>
   );
 }
 

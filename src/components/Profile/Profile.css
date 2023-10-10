@@ -98,12 +98,12 @@
   .profile__button-save {
     margin-top: 210px;
   }
-
 }
 
 @media screen and (max-width: 678px) {
   .profile {
     padding: 70px 0 40px;
+    max-width: 260px;
   }
 
   .profile__title {
@@ -112,5 +112,10 @@
 
   .profile__button-save {
     margin-top: 379px;
+    font-size: 12px;
+  }
+
+  .profile__button-logout {
+    font-size: 12px;
   }
 }
