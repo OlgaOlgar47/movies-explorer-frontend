@@ -7,4 +7,4 @@
 * Каркас макета реализован на Flex layout
 * Валидированные формы с заданным плейсхолдером
 
-## По макету Dark-4
+## [По макету Dark-4](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?node-id=1%3A9792&mode=dev)
