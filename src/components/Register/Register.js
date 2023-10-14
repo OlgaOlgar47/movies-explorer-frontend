@@ -2,7 +2,7 @@ import React from "react";
 import Form from "../Form/Form";
 
 function Register(props) {
-  const { onRegister, values, errors, onChange } = props;
+  const { onRegister, values, errors, onChange, isValid } = props;
   return (
     <section>
       <Form
@@ -17,6 +17,7 @@ function Register(props) {
         values={values}
         errors={errors}
         onChange={onChange}
+        isValid={isValid}
       />
     </section>
   );

@@ -15,6 +15,7 @@ function Form({
   submitButtonForLogin,
   onSubmit,
   onChange,
+  isValid,
 }) {
   return (
     <form className="form" onSubmit={onSubmit} noValidate>
@@ -71,9 +72,13 @@ function Form({
           {errors.password || ""}
         </span>
       </label>
+      <span className=".form__server-error">{errors.serverError}</span>
       <button
         type="submit"
-        className={`form__submit-button ${submitButtonForLogin}`}
+        disabled={!isValid}
+        className={`form__submit-button ${submitButtonForLogin} ${
+          !isValid ? "form__submit-button-inactive" : ""
+        }`}
       >
         {submitText}
       </button>

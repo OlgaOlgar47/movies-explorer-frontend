@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.js";
@@ -11,72 +11,95 @@ import Login from "../Login/Login";
 import Footer from "../Footer/Footer";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import useValidation from "../../hooks/useValidation";
-import * as Auth from "../Auth/Auth";
+import * as MainApi from "../../utils/MainApi";
 import InfoTooltip from "../InfoToolTip/InfoToolTip";
-import fail from "../../images/fail.svg";
 import success from "../../images/success.svg";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { values, setValues, errors, onChange } = useValidation();
+  const { values, setValues, errors, onChange, isValid } = useValidation();
   const [loggedIn, setLoggedIn] = useState(false);
   const [isSuccessPopupOpen, setSuccessPopupOpen] = useState(false);
-  const [isFailPopupOpen, setFailPopupOpen] = useState(false);
 
-  const openPopupInfoSucces = () => {
+  const openPopupInfoSuccess = () => {
     setSuccessPopupOpen("popup_opened");
-  };
-
-  const openPopupInfoFail = () => {
-    setFailPopupOpen("popup__opened");
+    setTimeout(() => {
+      setSuccessPopupOpen(false);
+    }, 1500);
   };
 
   const closeAllPopups = () => {
     setSuccessPopupOpen(false);
-    setFailPopupOpen(false);
   };
 
   const onRegister = (e) => {
     e.preventDefault();
-    Auth.register(values.email, values.password, values.name)
+    MainApi.register(values.email, values.password, values.name)
       .then((res) => {
-        openPopupInfoSucces();
-        navigate("/movies", { replace: true });
+        openPopupInfoSuccess();
+        return MainApi.authorize(values.email, values.password);
+      })
+      .then((data) => {
+        console.log("hura");
+        if (data) {
+          setValues({ email: "", password: "" });
+          setLoggedIn(true);
+          navigate("/movies", { replace: true });
+        }
       })
       .catch((err) => {
-        openPopupInfoFail();
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    console.log(loggedIn); // Этот код выполняется после изменения loggedIn
+  }, [loggedIn]);
 
   const onLogin = (e) => {
     e.preventDefault();
     if (!values.email || !values.password) {
       return;
     }
-    Auth.authorize(values.email, values.password)
+    MainApi.authorize(values.email, values.password)
       .then((data) => {
         if (data) {
+          console.log("Received token:", data.token);
           setValues({ email: "", password: "" });
-          handleLogin();
+          setLoggedIn(true);
+          console.log(loggedIn);
           navigate("/movies", { replace: true });
         }
       })
       .catch((err) => {
-        openPopupInfoFail();
         console.log(err);
       });
   };
 
-  const handleLogin = () => {
-    setLoggedIn(true);
-  };
+  const tokenCheck = useCallback(() => {
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
+      console.log("Stored token:", token);
+      if (token) {
+        MainApi.getContent(token)
+          .then((res) => {
+            if (res) {
+              setLoggedIn(true);
+              navigate("/movies", { replace: true });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
+  }, [setLoggedIn, navigate]);
 
-  // useEffect(() => {
-  //   tokenCheck();
-  // }, [tokenCheck]);
+  useEffect(() => {
+    tokenCheck();
+  }, [tokenCheck]);
 
   const showHeader = () => {
     const { pathname } = location;
@@ -104,13 +127,19 @@ function App() {
           <Route
             path="/movies"
             element={
-              <ProtectedRoute element={<Movies loggedIn={loggedIn} />} />
+              <ProtectedRoute
+                element={Movies}
+                loggedIn={loggedIn}
+              />
             }
           />
           <Route
             path="/saved-movies"
             element={
-              <ProtectedRoute element={<SavedMovies loggedIn={loggedIn} />} />
+              <ProtectedRoute
+                element={SavedMovies}
+                loggedIn={loggedIn}
+              />
             }
           />
           <Route
@@ -125,6 +154,7 @@ function App() {
                 values={values}
                 errors={errors}
                 onChange={onChange}
+                isValid={isValid}
               />
             }
           />
@@ -136,6 +166,7 @@ function App() {
                 errors={errors}
                 values={values}
                 onChange={onChange}
+                isValid={isValid}
               />
             }
           />
@@ -148,14 +179,6 @@ function App() {
           onClose={closeAllPopups}
           imagePath={success}
           title="Вы успешно зарегистрировались!"
-        />
-        <InfoTooltip
-          name="infotooltip"
-          isOpen={isFailPopupOpen}
-          onClose={closeAllPopups}
-          imagePath={fail}
-          title="Что-то пошло не так!
-             Попробуйте ещё раз."
         />
       </div>
     </div>

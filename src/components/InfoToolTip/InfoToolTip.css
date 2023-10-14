@@ -14,6 +14,10 @@
   visibility: hidden;
 }
 
+.popup_fadeout {
+    opacity: 0;
+  }
+
 .popup_opened {
   opacity: 1;
   visibility: visible;

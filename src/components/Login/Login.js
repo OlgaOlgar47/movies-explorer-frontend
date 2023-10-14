@@ -2,7 +2,7 @@ import React from "react";
 import Form from "../Form/Form";
 
 function Login(props) {
-  const { onLogin, values, errors, onChange } = props;
+  const { onLogin, values, errors, onChange, isValid } = props;
   return (
     <section>
       <Form
@@ -18,6 +18,7 @@ function Login(props) {
         values={values}
         errors={errors}
         onChange={onChange}
+        isValid={isValid}
       />
     </section>
   );

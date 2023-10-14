@@ -1,12 +1,11 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-// этот компонент принимает другой компонент в качестве пропса
-const ProtectedRoute = ({ element: Component, ...props }) => {
-  return props.loggedIn ? (
+const ProtectedRoute = ({ element: Component, loggedIn, ...props }) => {
+  return loggedIn ? (
     <Component {...props} />
   ) : (
-    <Navigate to="/movies" replace />
+    <Navigate to="/" replace />
   );
 };
 

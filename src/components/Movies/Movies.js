@@ -5,7 +5,7 @@ import './Movies.css';
 
 function Movies() {
   return (
-    <main Movies className="movies">
+    <main className="movies">
     <SearchForm />
     <MoviesCardList />  
     </main>
