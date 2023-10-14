@@ -42,11 +42,8 @@ function App() {
     e.preventDefault();
     Auth.register(values.email, values.password, values.name)
       .then((res) => {
-        console.log('зарегились...')
         openPopupInfoSucces();
-        console.log('теперь пора..')
         navigate("/movies", { replace: true });
-        console.log('ну и как')
       })
       .catch((err) => {
         openPopupInfoFail();
@@ -76,6 +73,10 @@ function App() {
   const handleLogin = () => {
     setLoggedIn(true);
   };
+
+  // useEffect(() => {
+  //   tokenCheck();
+  // }, [tokenCheck]);
 
   const showHeader = () => {
     const { pathname } = location;

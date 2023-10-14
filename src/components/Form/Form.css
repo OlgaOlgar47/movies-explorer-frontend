@@ -64,12 +64,11 @@
   line-height: normal;
   height: 12px;
   margin: 6px 0;
-  visibility: hidden;
 }
 
-.form__input-error_active {
+/* .form__input-error_active {
   visibility: visible;
-}
+} */
 
 .form__submit-button {
   width: 396px;

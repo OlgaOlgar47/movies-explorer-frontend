@@ -16,9 +16,8 @@ function Form({
   onSubmit,
   onChange,
 }) {
-  console.log(values);
   return (
-    <form className="form" onSubmit={onSubmit}>
+    <form className="form" onSubmit={onSubmit} noValidate>
       <Link to="/" className="form__logo">
         <img src={logo} alt="логотип сайта"></img>
       </Link>
@@ -52,6 +51,7 @@ function Form({
           required
           onChange={onChange}
           value={values.email || ""}
+          pattern="^[\w\.-]+@[\w\.-]+\.\w+$"
         />
         <span className="form__input-error">{errors.email || ""}</span>
       </label>
