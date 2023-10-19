@@ -1,4 +1,5 @@
 .form {
+  position: relative;
   padding: 70px 0;
   margin: 0 auto;
   display: flex;
@@ -54,9 +55,6 @@
 }
 
 .form__input-error {
-  position: absolute;
-  top: 45px;
-  left: 0;
   color: #ee3465;
   font-size: 10px;
   font-weight: 400;
@@ -71,7 +69,7 @@
   font-size: 11px;
   font-weight: 400;
   height: 14px;
-  margin: 0 0 20px;
+  margin: 100px 0 20px;
 }
 
 .form__submit-button {
@@ -86,12 +84,12 @@
   font-size: 14px;
   font-weight: 500;
   line-height: normal;
-  margin: 128px 0 16px;
+  margin: 0 0 16px;
   align-self: center;
 }
 
 .form__submit-button_login {
-  margin-top: 197px;
+  margin-top: 169px;
 }
 
 .form__submit-button:hover {
@@ -144,6 +142,12 @@
 @media screen and (max-width: 1024px) {
   .form {
     padding: 238px 0;
+  }
+
+  .form__server-error {
+    position: absolute;
+    top: 763px;
+    left: 95px;
   }
 }
 

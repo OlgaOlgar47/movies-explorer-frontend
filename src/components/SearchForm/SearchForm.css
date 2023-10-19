@@ -47,9 +47,9 @@
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
-  align-self: center;
-  margin-top: 20px;
-  display: none;
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px 0 0;
 }
 
 @media screen and (max-width: 567px) {

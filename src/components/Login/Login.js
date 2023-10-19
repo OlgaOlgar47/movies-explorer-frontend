@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect} from "react";
 import Form from "../Form/Form";
 
 function Login(props) {
-  const { onLogin, values, errors, onChange, isValid } = props;
+  const { onLogin, values, errors, onChange, isValid, setIsError, serverError } = props;
+
+  useEffect(() => {
+    setIsError(false);
+  }, [setIsError]);
+
   return (
     <section>
       <Form
@@ -19,6 +24,7 @@ function Login(props) {
         errors={errors}
         onChange={onChange}
         isValid={isValid}
+        serverError={serverError}
       />
     </section>
   );
