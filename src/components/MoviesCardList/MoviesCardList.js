@@ -60,7 +60,6 @@ function MoviesCardList({
   useEffect(() => {
     if (!isSaved) {
       setCount(counterCards().init);
-
       function counterCardsForResize() {
         if (window.innerWidth >= stepMaxScreen) {
           setCount(counterCards().init);

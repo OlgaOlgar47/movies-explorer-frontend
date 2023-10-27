@@ -9,6 +9,7 @@ const stepMediumScreen = 2;
 const stepSmallScreen = 2;
 const shortsDuration = 40;
 const regExpEmail = "^\\S+@\\S+\\.\\S+$";
+const gitHubURL = "https://github.com/OlgaOlgar47";
 
 
 export {
@@ -22,5 +23,6 @@ export {
   stepMediumScreen,
   stepSmallScreen,
   regExpEmail,
-  shortsDuration
+  shortsDuration,
+  gitHubURL,
 };

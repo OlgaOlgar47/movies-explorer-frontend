@@ -1,6 +1,6 @@
 import React from "react";
 import './Footer.css';
-import gitHubURL from "../../constants";
+import { gitHubURL } from "../../utils/constants";
 
 function Footer() {
     return (
