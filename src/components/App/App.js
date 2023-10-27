@@ -17,82 +17,90 @@ import InfoTooltip from "../InfoToolTip/InfoToolTip";
 import success from "../../images/success.svg";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ServerErrorContext from "../../contexts/ServerErrorContext";
+import IsSentContext from "../../contexts/IsSentContext";
 
 function App() {
-  const location = useLocation();
   const navigate = useNavigate();
-
   const [loggedIn, setLoggedIn] = useState(false);
   const [isSent, setIsSent] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  //   const [savedMovies, setSavedMovies] = useState([]);
-  const [isError, setIsError] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const [serverError, setServerError] = useState("");
-  //   const [isEditedSuccessfull, setisEditedSuccessfull]
-  //  = useState(false);
-  const [isSuccessPopupOpen, setSuccessPopupOpen] = useState(false);
-  const [searchData, setSearchData] = useState(null);
-  const [isCheckToken, setIsCheckToken] = useState(false);
-  const { values, setValues, errors, onChange, isValid, setIsValid } =
-    useValidation();
+  const [isSuccessEditPopupOpen, setisSuccessEditPopupOpen] = useState(false);
+  const [isSuccessRegisterPopupOpen, setSuccessRegisterPopupOpen] =
+    useState(false);
+  const [savedMovies, setSavedMovies] = useState([]);
+  const [isCheckToken, setIsCheckToken] = useState(true);
+  const { values, setValues, errors, onChange, isValid } = useValidation();
 
   useEffect(() => {
-    if (localStorage.token) {
-      Promise.all([
-        MainApi.getUserData(localStorage.token),
-        MainApi.getMovies(localStorage.token),
-      ])
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      Promise.all([MainApi.getUserData(token), MainApi.getMovies(token)])
         .then(([userData, moviesData]) => {
           setCurrentUser(userData);
+          setSavedMovies(moviesData.reverse());
           setLoggedIn(true);
           setIsCheckToken(false);
         })
         .catch((err) => {
           console.log(err);
           setIsCheckToken(false);
-          localStorage.clear();
         });
     } else {
       setLoggedIn(false);
       setIsCheckToken(false);
-      localStorage.clear();
     }
   }, [loggedIn]);
 
-  const openPopupInfoSuccess = () => {
-    setSuccessPopupOpen("popup_opened");
+  const openPopupRegisterSuccess = () => {
+    setSuccessRegisterPopupOpen("popup_opened");
     setTimeout(() => {
-      setSuccessPopupOpen(false);
-    }, 1500);
+      setSuccessRegisterPopupOpen(false);
+    }, 1200);
+  };
+
+  const openPopupEditSuccess = () => {
+    setisSuccessEditPopupOpen("popup_opened");
+    setTimeout(() => {
+      setisSuccessEditPopupOpen(false);
+    }, 1200);
   };
 
   const closeAllPopups = () => {
-    setSuccessPopupOpen(false);
+    setSuccessRegisterPopupOpen(false);
+    setisSuccessEditPopupOpen(false);
   };
 
   function onRegister(e) {
     e.preventDefault();
+    setIsSent(true);
     MainApi.register(values.name, values.email, values.password)
       .then((res) => {
-        openPopupInfoSuccess();
-        setCurrentUser(res);
-        return MainApi.authorize(values.email, values.password);
-      })
-      .then((data) => {
-        if (data) {
-          window.scrollTo(0, 0);
-        }
+        openPopupRegisterSuccess();
+        MainApi.authorize(values.email, values.password)
+          .then((data) => {
+            localStorage.setItem("jwt", data.token);
+            setValues({ email: "", password: "" });
+            setLoggedIn(true);
+            navigate("/movies", { replace: true });
+          })
+          .catch((err) => {
+            setServerError("Произошла ошибка при авторизации");
+            console.log(err);
+          })
+          .finally(() => setIsSent(false));
       })
       .catch((err) => {
-        setIsError(true);
-        setServerError("Произошла ошибка при авторизации");
+        setServerError("Произошла ошибка при регистрации");
         console.log(err);
-      });
+      })
+      .finally(() => setIsSent(false));
   }
 
   useEffect(() => {
-    console.log(loggedIn); // Этот код выполняется после изменения loggedIn
+    console.log(loggedIn);
   }, [loggedIn]);
 
   function onLogin(e) {
@@ -101,15 +109,13 @@ function App() {
     MainApi.authorize(values.email, values.password)
       .then((data) => {
         if (data) {
-          localStorage.setItem("token", data.token);
-          console.log("Received token:", data.token);
+          localStorage.setItem("jwt", data.token);
           setValues({ email: "", password: "" });
           setLoggedIn(true);
           navigate("/movies", { replace: true });
         }
       })
       .catch((err) => {
-        setIsError(true);
         setServerError("Неправильный логин или пароль");
         console.log(err);
       })
@@ -117,37 +123,40 @@ function App() {
   }
 
   function onLogout() {
-    localStorage.clear();
-    setLoggedIn(false);
-    navigate("/");
+    MainApi.logout()
+      .then(() => {
+        localStorage.clear();
+        setLoggedIn(false);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error during logout:", error);
+      });
   }
 
   const tokenCheck = useCallback(() => {
-    if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
-      console.log("Stored token:", token);
-      if (token && !loggedIn) {
-        MainApi.getUserData(token)
-          .then((res) => {
-            if (res) {
-              setCurrentUser(res);
-              setLoggedIn(true);
-              setIsCheckToken(false)
-              navigate("/movies", { replace: true });
-            }
-          })
-          .catch((err) => {
-            setIsCheckToken(false)
-            console.log(err);
-          });
-      }
+    const token = localStorage.getItem("jwt");
+    if (token && !loggedIn) {
+      MainApi.getUserData(token)
+        .then((res) => {
+          if (res) {
+            setCurrentUser(res);
+            setLoggedIn(true);
+            isCheckToken(false);
+            navigate("/movies", { replace: true });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [setLoggedIn, navigate, loggedIn]);
+  }, [setLoggedIn, navigate, loggedIn, isCheckToken]);
 
   useEffect(() => {
     tokenCheck();
   }, [tokenCheck]);
 
+  const location = useLocation();
   const showFooter = () => {
     const { pathname } = location;
     return (
@@ -155,21 +164,41 @@ function App() {
     );
   };
 
-  function onSearch() {}
-
   function onEditProfile(data) {
+    setIsSent(true);
     MainApi.editUserData(data, localStorage.token)
       .then((res) => {
         setCurrentUser(res);
+        openPopupEditSuccess();
+        setIsEdit(false);
       })
       .catch((error) => {
         setServerError("Ошибка при редактировании профиля");
         console.log(error);
-      });
+      })
+      .finally(() => setIsSent(false));
   }
 
+  function addMovie() {}
+
   const ProtectedMovies = () => {
-    return <Movies onSearch={onSearch} searchData={searchData} />;
+    return (
+      <Movies
+        savedMovies={savedMovies}
+        setServerError={setServerError}
+        addMovie={addMovie}
+      />
+    );
+  };
+
+  const ProtectedSavedMovies = () => {
+    return (
+      <SavedMovies
+        isSaved={true}
+        savedMovies={savedMovies}
+        setServerError={setServerError}
+      />
+    );
   };
 
   return (
@@ -178,77 +207,92 @@ function App() {
         <Preloader />
       ) : (
         <CurrentUserContext.Provider value={currentUser}>
-          <div className="page">
-            <div className="page__content">
-              <Header loggedIn={loggedIn} />
-              <Routes>
-                <Route path="/" element={<Main />} />
-                <Route
-                  path="/movies"
-                  element={
-                    <ProtectedRoute
-                      element={ProtectedMovies}
-                      loggedIn={loggedIn}
+          <ServerErrorContext.Provider value={serverError}>
+            <IsSentContext.Provider value={isSent}>
+              <div className="page">
+                <div className="page__content">
+                  <Header loggedIn={loggedIn} />
+                  <Routes>
+                    <Route path="/" element={<Main />} />
+                    <Route
+                      path="/movies"
+                      element={
+                        <ProtectedRoute
+                          element={ProtectedMovies}
+                          loggedIn={loggedIn}
+                        />
+                      }
                     />
-                  }
-                />
-                <Route
-                  path="/saved-movies"
-                  element={
-                    <ProtectedRoute element={SavedMovies} loggedIn={loggedIn} />
-                  }
-                />
-                <Route
-                  path="/profile"
-                  element={
-                    <Profile
-                      isEdit={false}
-                      onEditProfile={onEditProfile}
-                      onLogout={onLogout}
-                      serverError={serverError}
+                    <Route
+                      path="/saved-movies"
+                      element={
+                        <ProtectedRoute
+                          element={ProtectedSavedMovies}
+                          loggedIn={loggedIn}
+                        />
+                      }
                     />
-                  }
-                />
-                <Route
-                  path="/signup"
-                  element={
-                    <Register
-                      onRegister={onRegister}
-                      values={values}
-                      errors={errors}
-                      setIsError={setIsError}
-                      serverError={serverError}
-                      onChange={onChange}
-                      isValid={isValid}
+                    <Route
+                      path="/profile"
+                      element={
+                        <Profile
+                          isEdit={isEdit}
+                          onLogout={onLogout}
+                          setIsEdit={setIsEdit}
+                          onEditProfile={onEditProfile}
+                          setServerError={setServerError}
+                        />
+                      }
                     />
-                  }
-                />
-                <Route
-                  path="/signin"
-                  element={
-                    <Login
-                      onLogin={onLogin}
-                      errors={errors}
-                      setIsError={setIsError}
-                      serverError={serverError}
-                      values={values}
-                      onChange={onChange}
-                      isValid={isValid}
+                    <Route
+                      path="/signup"
+                      element={
+                        <Register
+                          isSent={isSent}
+                          values={values}
+                          errors={errors}
+                          isValid={isValid}
+                          onChange={onChange}
+                          onRegister={onRegister}
+                          setServerError={setServerError}
+                        />
+                      }
                     />
-                  }
-                />
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-              {showFooter() && <Footer />}
-              <InfoTooltip
-                name="infotooltip"
-                isOpen={isSuccessPopupOpen}
-                onClose={closeAllPopups}
-                imagePath={success}
-                title="Вы успешно зарегистрировались!"
-              />
-            </div>
-          </div>
+                    <Route
+                      path="/signin"
+                      element={
+                        <Login
+                          isSent={isSent}
+                          errors={errors}
+                          values={values}
+                          isValid={isValid}
+                          onLogin={onLogin}
+                          onChange={onChange}
+                          setServerError={setServerError}
+                        />
+                      }
+                    />
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Routes>
+                  {showFooter() && <Footer />}
+                  <InfoTooltip
+                    name="infotooltip"
+                    isOpen={isSuccessRegisterPopupOpen}
+                    onClose={closeAllPopups}
+                    imagePath={success}
+                    title="Вы успешно зарегистрировались!"
+                  />
+                  <InfoTooltip
+                    name="infotooltip"
+                    isOpen={isSuccessEditPopupOpen}
+                    onClose={closeAllPopups}
+                    imagePath={success}
+                    title="Редактирование успешно!"
+                  />
+                </div>
+              </div>
+            </IsSentContext.Provider>
+          </ServerErrorContext.Provider>
         </CurrentUserContext.Provider>
       )}
     </>

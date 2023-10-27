@@ -2,20 +2,20 @@ import React, { useEffect } from "react";
 import Form from "../Form/Form";
 
 function Register(props) {
-  const { onRegister, values, errors, onChange, isValid, setIsError, serverError } = props;
+  const { onRegister, values, errors, onChange, isValid, setServerError } = props;
 
   useEffect(() => {
-    setIsError(false);
-  }, [setIsError]);
+    setServerError("");
+  }, [setServerError]);
 
   return (
     <section>
       <Form
         isRegister={true}
+        setServerError={setServerError}
         title="Добро пожаловать!"
         submitText="Зарегистрироваться"
         submitButtonForLogin=""
-        s
         link="/signin"
         formText="Уже зарегистрированы?"
         linkText="Войти"
@@ -24,7 +24,6 @@ function Register(props) {
         errors={errors}
         onChange={onChange}
         isValid={isValid}
-        serverError={serverError}
       />
     </section>
   );

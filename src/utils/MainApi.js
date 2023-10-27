@@ -47,8 +47,18 @@ export const authorize = (email, password) => {
     })
 };
 
+export const logout = () => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: "POST",
+    credentials: "include",
+  })
+  .then((res) => {
+    return getResponseData(res);
+  })
+}
+  
+
 export const getUserData = (token) => {
-  console.log("getUserData");
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     credentials: "include",
@@ -76,17 +86,26 @@ export const editUserData = (values, token) => {
       name: values.name,
       email: values.email,
     }),
-  });
+  })
+  .then((res) => {
+    return getResponseData(res);
+  })
+  .then((data) => data);
 };
 
 export const getMovies = (token) => {
   return fetch(`${BASE_URL}/movies`, {
+    method: "GET",
+    credentials: "include",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  });
+  })
+  .then((res) => {
+    return getResponseData(res);
+  })
 };
 
 export const addMovie = (data, token) => {

@@ -2,22 +2,22 @@ import React, { useContext, useEffect } from "react";
 import "./Profile.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import useValidation from "../../hooks/useValidation";
+import IsSentContext from "../../contexts/IsSentContext";
+import Preloader from "../Preloader/Preloader";
+import { regExpEmail } from "../../utils/constants";
+import ServerErrorContext from "../../contexts/ServerErrorContext";
 
-function Profile({ onLogout, onEditProfile, serverError, isEdit }) {
+function Profile({ onLogout, onEditProfile, setServerError, isEdit, setIsEdit }) {
   const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser);
+  const serverError = useContext(ServerErrorContext)
+  const isSent = useContext(IsSentContext);
+  const { values, errors, isValid, onChange, setValues } = useValidation();
 
-  const { values, errors, isValid, onChange, setValues, resetValidation } =
-    useValidation();
-
-  useEffect(() => {
-    resetValidation(values, errors);
-  }, [values, errors, resetValidation]);
 
   useEffect(() => {
     setValues({
-      name: currentUser?.name,
-      email: currentUser?.email,
+      name: currentUser.name,
+      email: currentUser.email,
     });
   }, [currentUser, setValues]);
 
@@ -35,6 +35,7 @@ function Profile({ onLogout, onEditProfile, serverError, isEdit }) {
             <label className="profile__label">
               Имя
               <input
+                disabled={isSent || !isEdit}
                 name="name"
                 id="name"
                 type="text"
@@ -44,7 +45,10 @@ function Profile({ onLogout, onEditProfile, serverError, isEdit }) {
                 maxLength="30"
                 required
                 value={values.name || ""}
-                onChange={onChange}
+                onChange={(e) => {
+                  onChange(e);
+                  setServerError("");
+                }}
               ></input>
             </label>
             <span className="profile__error" id="name-error">
@@ -54,6 +58,7 @@ function Profile({ onLogout, onEditProfile, serverError, isEdit }) {
             <label className="profile__label">
               E-mail
               <input
+                disabled={isSent || !isEdit}
                 name="email"
                 id="email"
                 type="email"
@@ -61,7 +66,11 @@ function Profile({ onLogout, onEditProfile, serverError, isEdit }) {
                 placeholder={currentUser.email}
                 required
                 value={values.email || ""}
-                onChange={onChange}
+                pattern={regExpEmail}
+                onChange={(e) => {
+                  onChange(e);
+                  setServerError("");
+                }}
               ></input>
             </label>
             <span className="profile__error" id="name-error">
@@ -70,15 +79,22 @@ function Profile({ onLogout, onEditProfile, serverError, isEdit }) {
           </div>
           <span className="profile__server-error">{serverError || ""}</span>
           {isEdit ? (
-            <button className={
-              isValid
-                ? "profile__button-save"
-                : "profile__button-save profile__button-save_inactive"
-            } type="submit" disabled={!isValid}>Сохранить</button>
+            <button
+              className={
+                !isValid || isSent
+                  ? "profile__button-save profile__button-save_inactive"
+                  : "profile__button-save"
+              }
+              type="submit"
+              disabled={!isValid || isSent}
+            >
+              {isSent ? <Preloader /> : "Сохранить"}
+            </button>
           ) : (
             <div className="profile__buttons-container">
               <button
                 type="button"
+                onClick={() => setIsEdit(true)}
                 className="profile__button-edit"
               >
                 Редактировать

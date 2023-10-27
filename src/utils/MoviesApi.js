@@ -11,11 +11,10 @@ class MoviesApi {
     return res.json();
   }
 
-  getInitialCards = () => {
+  getInitialMovies = () => {
     return fetch(this.baseURL, {
       method: "GET",
       headers: this.headers,
-      credentials: "include",
     }).then((res) => {
       return this._getResponseData(res);
     });

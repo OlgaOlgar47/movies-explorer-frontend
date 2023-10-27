@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Form.css";
 import logo from "../../images/logo.svg";
+import { regExpEmail } from "../../utils/constants";
 import { Link } from "react-router-dom";
+import Preloader from "../Preloader/Preloader";
+import ServerErrorContext from "../../contexts/ServerErrorContext";
+import IsSentContext from "../../contexts/IsSentContext";
 
 function Form({
   isRegister,
@@ -15,9 +19,12 @@ function Form({
   submitButtonForLogin,
   onSubmit,
   onChange,
+  isInputValid,
   isValid,
-  serverError
+  setServerError
 }) {
+  const serverError = useContext(ServerErrorContext);
+  const isSent = useContext(IsSentContext)
   return (
     <form className="form" onSubmit={onSubmit} noValidate>
       <Link to="/" className="form__logo">
@@ -33,7 +40,11 @@ function Form({
             id="name"
             name="name"
             placeholder="Введите имя"
-            onChange={onChange}
+            disabled={isSent}
+            onChange={(e) => {
+              onChange(e);
+              setServerError("");
+            }}
             value={values.name || ""}
             required
           />
@@ -51,9 +62,13 @@ function Form({
           name="email"
           placeholder="Введите e-mail"
           required
-          onChange={onChange}
+          disabled={isSent}
+          onChange={(e) => {
+            onChange(e);
+            setServerError("");
+          }}
           value={values.email || ""}
-          pattern="^[\w\.-]+@[\w\.-]+\.\w+$"
+          pattern={regExpEmail}
         />
         <span className="form__input-error">{errors.email || ""}</span>
       </label>
@@ -66,7 +81,11 @@ function Form({
           name="password"
           placeholder="Введите пароль"
           required
-          onChange={onChange}
+          disabled={isSent}
+          onChange={(e) => {
+            onChange(e);
+            setServerError("");
+          }}
           value={values.password || ""}
         ></input>
         <span className="form__input-error form__input-error_active">
@@ -76,12 +95,12 @@ function Form({
       <span className={`form__server-error ${submitButtonForLogin}`}>{serverError || ""}</span>
       <button
         type="submit"
-        disabled={!isValid}
+        disabled={!isValid || isSent}
         className={`form__submit-button ${
-          !isValid ? "form__submit-button-inactive" : ""
+          !isValid || isSent ? "form__submit-button-inactive" : ""
         }`}
       >
-        {submitText}
+        {isSent ? <Preloader /> : submitText}
       </button>
       <div className="form__subtitle">
         <p className="form__subtitle-text">{formText}</p>

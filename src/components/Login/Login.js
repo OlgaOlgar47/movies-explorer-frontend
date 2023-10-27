@@ -2,11 +2,11 @@ import React, { useEffect} from "react";
 import Form from "../Form/Form";
 
 function Login(props) {
-  const { onLogin, values, errors, onChange, isValid, setIsError, serverError } = props;
+  const { onLogin, values, errors, onChange, isValid, setServerError } = props;
 
   useEffect(() => {
-    setIsError(false);
-  }, [setIsError]);
+    setServerError("");
+  }, [setServerError]);
 
   return (
     <section>
@@ -24,7 +24,7 @@ function Login(props) {
         errors={errors}
         onChange={onChange}
         isValid={isValid}
-        serverError={serverError}
+        setServerError={setServerError}
       />
     </section>
   );
