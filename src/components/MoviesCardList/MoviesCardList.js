@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MoviesCardList.css";
+import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 import {
@@ -18,21 +19,22 @@ function MoviesCardList({
   isfirstEnterance,
   isSaved,
   addMovie,
+  deleteMovie,
   isLoading,
-  serverError,
+  beatfilmsFailed,
   filteredMovies,
-  savedMovies
+  savedMovies,
 }) {
-  const [count, setCount] = useState(0);
+  const { pathname } = useLocation();
+  const [count, setCount] = useState(counterCards().init);
   // const [showMore, setShowMore] = useState(false);
   const moviesToShow = filteredMovies.slice(0, count);
 
-  const cards = document.querySelector('.cards');
-  
+  const cards = document.querySelector(".cards");
   if (moviesToShow.length < 3) {
-    cards?.classList.add('centered');
+    cards?.classList.add("centered");
   } else {
-    cards?.classList.remove('centered');
+    cards?.classList.remove("centered");
   }
 
   function counterCards() {
@@ -83,50 +85,61 @@ function MoviesCardList({
     }
   }, [isSaved]);
 
-  console.log('count', count);
-  console.log('moviesToShow.length', filteredMovies.length);
-
   return (
     <section className={isSaved ? "cards cards_isSaved" : "cards"}>
       <ul className="cards__list">
         {isLoading ? (
           <Preloader />
-        ) : (!isSaved) && moviesToShow.length !== 0 ? (
+        ) : (pathname === "/movies") && moviesToShow.length !== 0 ? (
           moviesToShow.map((card) => (
             <li className="cards__item" key={card.id}>
-               {/* <li className={`cards__item ${showMore ? 'cards__item_show' : ''}`} key={card.id}></li> */}
+              {/* <li className={`cards__item ${showMore ? 'cards__item_show' : ''}`} key={card.id}></li> */}
               <MoviesCard
                 data={card}
                 isSaved={isSaved}
                 savedMovies={savedMovies}
                 addMovie={addMovie}
+                deleteMovie={deleteMovie}
               />
             </li>
-          )) 
-        ) : moviesToShow.length !== 0 ? (
-          moviesToShow.map((card) => (
+          ))
+        ) : (pathname === "/saved-movies") && filteredMovies.length !== 0 ? (
+          filteredMovies.map((card) => (
             <li className="cards__item" key={card._id}>
               <MoviesCard
                 data={card}
                 isSaved={isSaved}
+                deleteMovie={deleteMovie}
+                savedMovies={savedMovies}
               />
             </li>
-          )) 
-        ) : serverError ? (
-          <span className="cards__server-error">
-            {serverError}
+          ))
+        ) : beatfilmsFailed ? (
+          <span className="cards__no-saved-movies">
+            «Во время запроса произошла ошибка. Возможно, проблема с соединением
+            или сервер недоступен. Подождите немного и попробуйте ещё раз»"
           </span>
-        ) : isSaved ? (
-          <span className="cards__no-saved-movies">«Нет сохраненных фильмов»</span>
+        ) : (pathname === "/saved-movies") && filteredMovies.length === 0 ? (
+          <span className="cards__no-saved-movies">
+            «Нет сохраненных фильмов»
+          </span>
+        ) : !isfirstEnterance ? (
+          <span className="cards__no-saved-movies">
+            «Ничего не найдено»
+          </span>
         ) : (
-          <span className="cards__nothing-found">«Ничего не найдено»</span>
+          <span className="cards__no-saved-movies">
+            «Чтобы увидеть список фильмов выполните поиск»
+          </span>
         )}
       </ul>
       {isSaved ? null : (
         <button
           type="button"
           onClick={clickMoreButton}
-          className={`cards__button-more ${count >= filteredMovies.length && 'cards__button-more_hidden'}`}
+          className={`cards__button-more ${
+            count >= filteredMovies.length && "cards__button-more_hidden"
+          }`}
         >
           Ещё
         </button>

@@ -22,6 +22,7 @@ import IsSentContext from "../../contexts/IsSentContext";
 
 function App() {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [loggedIn, setLoggedIn] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -99,9 +100,9 @@ function App() {
       .finally(() => setIsSent(false));
   }
 
-  useEffect(() => {
-    console.log(loggedIn);
-  }, [loggedIn]);
+  // useEffect(() => {
+  //   console.log(loggedIn);
+  // }, [loggedIn]);
 
   function onLogin(e) {
     e.preventDefault();
@@ -130,7 +131,7 @@ function App() {
         navigate("/");
       })
       .catch((error) => {
-        console.error("Error during logout:", error);
+        console.error("Ошибка при выходе из профиля:", error);
       });
   }
 
@@ -156,9 +157,7 @@ function App() {
     tokenCheck();
   }, [tokenCheck]);
 
-  const location = useLocation();
   const showFooter = () => {
-    const { pathname } = location;
     return (
       pathname === "/" || pathname === "/movies" || pathname === "/saved-movies"
     );
@@ -179,14 +178,56 @@ function App() {
       .finally(() => setIsSent(false));
   }
 
-  function addMovie() {}
+  function handleAddMovie(data) {
+    const token = localStorage.getItem("jwt");
+    MainApi.addMovie(data, token)
+    .then((res) => setSavedMovies([res, ...savedMovies]))
+    .catch((err) => console.error('Ошибка при нажитии на кнопку', err))
+  }
+
+  function handleDeleteMovie(data) {
+    const token = localStorage.getItem("jwt");
+    let movieToDelete;
+    if (pathname === '/movies') {
+      movieToDelete = savedMovies.filter((item) => item.movieId === data.id);
+    } else {
+      movieToDelete = savedMovies.filter((item) => item.movieId === data.movieId);
+    }
+    MainApi.deleteMovie(movieToDelete[0]._id, token)
+    .then(() => {
+      console.log("savedMovies", savedMovies)
+      console.log("data._id", data.id)
+      if (pathname === '/movies') {
+      setSavedMovies(savedMovies.filter((movie) => { 
+        return movie.movieId !== data.id}))
+      } else {
+        console.log('пришли сюда')
+       
+        setSavedMovies(savedMovies.filter((movie) => { 
+          return movie._id !== data._id}))
+        }
+    })
+    .catch((err) => console.error('При удалении фильма произошла ошибка', err))
+  }
+
+  useEffect(() => {
+    console.log("savedMovies", savedMovies)
+  }, [savedMovies])
+
+  useEffect(() => {
+    console.log("savedMovies", savedMovies);
+  }, [savedMovies]);
+
+
 
   const ProtectedMovies = () => {
     return (
       <Movies
+        isSaved={false}
         savedMovies={savedMovies}
+        addMovie={handleAddMovie}
+        deleteMovie={handleDeleteMovie}
         setServerError={setServerError}
-        addMovie={addMovie}
       />
     );
   };
@@ -196,6 +237,7 @@ function App() {
       <SavedMovies
         isSaved={true}
         savedMovies={savedMovies}
+        deleteMovie={handleDeleteMovie}
         setServerError={setServerError}
       />
     );

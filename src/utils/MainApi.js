@@ -113,7 +113,7 @@ export const addMovie = (data, token) => {
     method: "POST",
     credentials: "include",
     headers: {
-      "Content-Type": "applicarion/json",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
@@ -122,21 +122,30 @@ export const addMovie = (data, token) => {
       duration: data.duration,
       description: data.description,
       year: data.year,
-      image: `htths://api.nomoreparties.co${data.iamge.url}`,
+      image: `https://api.nomoreparties.co/${data.image.url}`,
       trailerLink: data.trailerLink,
-      thumbnail: `htths://api.nomoreparties.co${data.iamge.formats.thumbnail.url}`,
+      thumbnail: `https://api.nomoreparties.co/${data.image.formats.thumbnail.url}`,
       movieId: data.id,
-      nameRu: data.nameRU,
-      nameEn: data.nameEn,
+      nameRU: data.nameRU,
+      nameEN: data.nameEN,
     }),
-  });
+  })
+  .then((res) => {
+    return getResponseData(res);
+  })
 };
 
 export const deleteMovie = (cardId, token) => {
   return fetch(`${BASE_URL}/movies/${cardId}`, {
     method: "DELETE",
+    credentials: "include",
     headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-    },
-  });
+    }
+  })
+  .then((res) => {
+    return getResponseData(res);
+  })
 };

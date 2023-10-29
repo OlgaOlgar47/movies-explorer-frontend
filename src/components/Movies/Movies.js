@@ -1,14 +1,13 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./Movies.css";
 import moviesApi from "../../utils/MoviesApi";
-import ServerErrorContext from "../../contexts/ServerErrorContext";
 import { shortsDuration } from "../../utils/constants";
 
-function Movies({ setServerError, addMovie, savedMovies }) {
-  const serverError = useContext(ServerErrorContext);
+function Movies({ setServerError, addMovie, deleteMovie, savedMovies }) {
   const [isCheck, setIsCheck] = useState(false);
+  const [beatfilmsFailed, setBeatfilmsFailed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -23,7 +22,7 @@ function Movies({ setServerError, addMovie, savedMovies }) {
     setSearchedMovie(query);
     const filtered = movies.filter((movie) => {
       const searchName = movie.nameRU
-        ?.toLowerCase()
+        .toLowerCase()
         .includes(query.toLowerCase());
       return isCheck
         ? searchName && movie.duration <= shortsDuration
@@ -42,13 +41,10 @@ function Movies({ setServerError, addMovie, savedMovies }) {
           setAllMovies(res);
           setIsCheck(false);
           setIsFirstEnterance(false);
-          setServerError("");
           filter(query, isCheck, res);
         })
         .catch((err) => {
-          setServerError(
-            "«Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз»"
-          );
+          setBeatfilmsFailed(true);
           console.error("Произошла ошибка на сервере: ", err);
         })
         .finally(() => setIsLoading(false));
@@ -94,11 +90,12 @@ function Movies({ setServerError, addMovie, savedMovies }) {
       />
       <MoviesCardList
         addMovie={addMovie}
+        deleteMovie={deleteMovie}
         isLoading={isLoading}
         filteredMovies={filteredMovies}
         savedMovies={savedMovies}
         isSaved={false}
-        serverError={serverError}
+        beatfilmsFailed={beatfilmsFailed}
         isFirstEnterance={isFirstEnterance}
       />
     </main>

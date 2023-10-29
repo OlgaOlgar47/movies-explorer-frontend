@@ -5,6 +5,8 @@ import logo from "../../images/logo.svg";
 import profileDark from "../../images/profile-dark.svg";
 import profileGreen from "../../images/profile-green.png";
 import Navigation from "../Navigation/Navigation";
+import burgerBlack from "../../images/burger-menu-button.svg";
+import burgerGreen from "../../images/header-green-burger.svg";
 
 function HeaderLoggedIn({ isMain }) {
   const [isClicked, setIsClicked] = useState(false);
@@ -45,7 +47,7 @@ function HeaderLoggedIn({ isMain }) {
         </NavLink>
         <Link to="/profile" className="header__button header__button_loggedIn">
           <img
-             src={isMain ? profileGreen : profileDark}
+            src={isMain ? profileGreen : profileDark}
             className="header__profile-icon"
             alt="Иконка аккаунта"
           ></img>
@@ -54,7 +56,12 @@ function HeaderLoggedIn({ isMain }) {
           type="button"
           className="header__burger-menu-button"
           onClick={handleOpenBurgerMenu}
-        ></button>
+        >
+          <img
+            src={isMain ? burgerGreen : burgerBlack}
+            alt="меню открытия навигации"
+          ></img>
+        </button>
       </nav>
       {isClicked ? <Navigation onClose={handleCloseBurgerMenu} /> : ""}
     </header>
@@ -62,7 +69,7 @@ function HeaderLoggedIn({ isMain }) {
 }
 
 function HeaderDefault() {
-  return ( 
+  return (
     <header className="header">
       <Link to="/" className="logo">
         <img src={logo} alt="логотип сайта" />
@@ -80,11 +87,14 @@ function HeaderDefault() {
 }
 
 function Header({ loggedIn }) {
-  const location = useLocation();
-  const { pathname } = location;
+  const { pathname } = useLocation();
 
   if (loggedIn) {
-    if (pathname === "/movies" || pathname === "/saved-movies" || pathname === "/profile") {
+    if (
+      pathname === "/movies" ||
+      pathname === "/saved-movies" ||
+      pathname === "/profile"
+    ) {
       return <HeaderLoggedIn isMain={false} />;
     } else if (pathname === "/") {
       return <HeaderLoggedIn isMain={true} />;
@@ -104,4 +114,3 @@ function Header({ loggedIn }) {
 }
 
 export default Header;
-

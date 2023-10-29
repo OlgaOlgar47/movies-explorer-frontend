@@ -56,13 +56,17 @@
 }
 
 .card__saved-button {
-  border-radius: 30px;
-  background: #EE3465;
   max-width: 100px;
   min-height: 29px;
   align-self: center;
   border: none;
   margin: 18px 0;
+  background: none;
+}
+
+.card__saved-button:hover {
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 .card__save-button:hover {

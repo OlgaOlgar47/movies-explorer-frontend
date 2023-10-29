@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./MoviesCard.css";
-import savedMovieImage from "../../images/saved-movie-button.svg";
-import { addMovie } from "../../utils/MainApi";
+import deleteMovieImage from "../../images/delete-movie-button.svg";
+import savedImage from "../../images/saved-image.png"
 
-function MoviesCard({ data, isSaved, savedMovies }) {
+function MoviesCard({ data, isSaved, savedMovies, addMovie, deleteMovie }) {
   const [cardIsSaved, setCardIsSaved] = useState(false);
 
   useEffect(() => {
@@ -16,18 +16,32 @@ function MoviesCard({ data, isSaved, savedMovies }) {
   function onClick() {
     if (savedMovies.some((movie) => data.id === movie.movieId)) {
       setCardIsSaved(true);
-      addMovie(data);
+      deleteMovie(data);
     } else {
       setCardIsSaved(false);
       addMovie(data);
     }
   }
 
+  function convertDuration(duration) {
+    const minutes = duration % 60;
+    const hours = Math.floor(duration / 60);
+    return hours === 0
+      ? `${minutes}m`
+      : minutes === 0
+      ? `${hours}ч`
+      : `${hours}ч ${minutes}м`;
+  }
+
+  // useEffect(() => {
+  //   console.log("cardIsSaved", cardIsSaved);
+  // }, [cardIsSaved]);
+
   return (
     <div className="card">
       <div className="card__top-container">
         <h3 className="card__name">{data.nameRU}</h3>
-        <p className="card__duration">{data.duration}</p>
+        <p className="card__duration">{convertDuration(data.duration)}</p>
       </div>
       <Link to={data.trailerLink} target="_blank">
         <img
@@ -41,15 +55,25 @@ function MoviesCard({ data, isSaved, savedMovies }) {
         ></img>
       </Link>
       {isSaved ? (
-        <button type="button" className="card__delete">
+        <button
+          type="button"
+          onClick={() => deleteMovie(data)}
+          className="card__delete"
+        >
           <img
-            src={savedMovieImage}
+            src={deleteMovieImage}
             alt="кнопка удаления сохраненного фильма"
           ></img>
         </button>
       ) : cardIsSaved ? (
-        <button type="button" onClick={onClick} className="card__saved-button">
-        </button>
+        <button
+          type="button"
+          onClick={onClick}
+          className="card__saved-button"
+        ><img
+        src={savedImage}
+        alt="розовая кнопка с белой галочкой"
+      ></img></button>
       ) : (
         <button type="button" onClick={onClick} className="card__save-button">
           Сохранить

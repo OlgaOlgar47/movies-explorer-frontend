@@ -19,7 +19,6 @@ function Form({
   submitButtonForLogin,
   onSubmit,
   onChange,
-  isInputValid,
   isValid,
   setServerError
 }) {

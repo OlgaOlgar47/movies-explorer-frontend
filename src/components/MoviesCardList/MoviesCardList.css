@@ -10,6 +10,12 @@
   align-items: center;
 }
 
+.cards__no-saved-movies {
+  color: #fff;
+  opacity: 0.5;
+  text-align: center;
+}
+
 .cards_isSaved {
   padding-bottom: 230px;
 }

@@ -14,7 +14,6 @@ function SearchForm({
   isFirstEnterance,
   toggleCheckbox
 }) {
-  console.log('первый раз', isFirstEnterance)
   const { pathname } = useLocation();
   const { values, onChange, setValues } = useValidation();
   const serverError = useContext(ServerErrorContext);
@@ -23,7 +22,6 @@ function SearchForm({
     if (pathname === "/saved-movies" && savedMovies.length === 0) {
       setValues({ query: "" });
     } else {
-      console.log('вот');
       setValues({ query: searchedMovie });
     }
   }, [pathname, savedMovies, setValues, searchedMovie, setServerError]);
@@ -59,7 +57,7 @@ function SearchForm({
           }}
           value={values.query || ""}
         ></input>
-        <button className="search-form__submit" type="submit">
+        <button className={`search-form__submit ${savedMovies && (pathname === "/saved-movies" && savedMovies.length === 0) ? "search-form__submit_disabled" : ''}`} type="submit">
           Поиск
         </button>
       </form>
