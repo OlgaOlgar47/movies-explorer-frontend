@@ -18,13 +18,13 @@ function Navigation({ onClose }) {
               onClick={onClose}
             ></button>
             <nav className="navigation__links">
-              <NavLink exact to="/" className={setActive}>
+              <NavLink exact="true" to="/" className={setActive}>
                 Главная
               </NavLink>
-              <NavLink exact to="/movies" className={setActive}>
+              <NavLink exact="true" to="/movies" className={setActive}>
                 Фильмы
               </NavLink>
-              <NavLink exact to="/saved-movies" className={setActive}>
+              <NavLink exact="true" to="/saved-movies" className={setActive}>
                 Сохранённые фильмы
               </NavLink>
               <Link to="/profile" className="navigation__profile">

@@ -30,13 +30,6 @@ function MoviesCardList({
   // const [showMore, setShowMore] = useState(false);
   const moviesToShow = filteredMovies.slice(0, count);
 
-  const cards = document.querySelector(".cards");
-  if (moviesToShow.length < 3) {
-    cards?.classList.add("centered");
-  } else {
-    cards?.classList.remove("centered");
-  }
-
   function counterCards() {
     const counter = { init: initMaxScreeen, step: stepMaxScreen };
     if (window.innerWidth < MaxScreen) {
@@ -84,6 +77,13 @@ function MoviesCardList({
       };
     }
   }, [isSaved]);
+
+  const cards = document.querySelector(".cards");
+  if (moviesToShow.length < 3) {
+    cards?.classList.add("centered");
+  } else {
+    cards?.classList.remove("centered");
+  }
 
   return (
     <section className={isSaved ? "cards cards_isSaved" : "cards"}>

@@ -60,7 +60,6 @@ function Movies({ setServerError, addMovie, deleteMovie, savedMovies }) {
       const movies = JSON.parse(localStorage.allMovies);
       setSearchedMovie(query);
       setIsFirstEnterance(false);
-      setServerError("");
       setIsCheck(isCheck);
       setAllMovies(movies);
       filter(query, isCheck, movies);

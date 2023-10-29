@@ -24,7 +24,7 @@ function SearchForm({
     } else {
       setValues({ query: searchedMovie });
     }
-  }, [pathname, savedMovies, setValues, searchedMovie, setServerError]);
+  }, [pathname, savedMovies, setValues, searchedMovie]);
 
   function handleSearch(e) {
     e.preventDefault();
@@ -32,7 +32,7 @@ function SearchForm({
       searchMovies(e.target.query.value);
       setServerError("");
     } else {
-      setServerError("Необходимо ввести название фильма");
+      setServerError("Нужно ввести ключевое слово");
     }
   }
 
