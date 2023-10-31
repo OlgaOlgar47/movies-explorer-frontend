@@ -3,7 +3,7 @@ import "./Profile.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import useValidation from "../../hooks/useValidation";
 import IsSentContext from "../../contexts/IsSentContext";
-import Preloader from "../Preloader/Preloader";
+import PreloaderButton from "../Preloaders/PreloaderButton";
 import { regExpEmail } from "../../utils/constants";
 import ServerErrorContext from "../../contexts/ServerErrorContext";
 
@@ -13,6 +13,9 @@ function Profile({ onLogout, onEditProfile, setServerError, isEdit, setIsEdit })
   const isSent = useContext(IsSentContext);
   const { values, errors, isValid, onChange, setValues } = useValidation();
 
+  useEffect(() => {
+    setServerError("");
+  }, [setServerError]);
 
   useEffect(() => {
     setValues({
@@ -40,7 +43,6 @@ function Profile({ onLogout, onEditProfile, setServerError, isEdit, setIsEdit })
                 id="name"
                 type="text"
                 className="profile__input"
-                placeholder={currentUser.name}
                 minLength="2"
                 maxLength="30"
                 required
@@ -63,7 +65,6 @@ function Profile({ onLogout, onEditProfile, setServerError, isEdit, setIsEdit })
                 id="email"
                 type="email"
                 className="profile__input"
-                placeholder={currentUser.email}
                 required
                 value={values.email || ""}
                 pattern={regExpEmail}
@@ -88,7 +89,7 @@ function Profile({ onLogout, onEditProfile, setServerError, isEdit, setIsEdit })
               type="submit"
               disabled={!isValid || isSent}
             >
-              {isSent ? <Preloader /> : "Сохранить"}
+              {isSent ? <PreloaderButton /> : "Сохранить"}
             </button>
           ) : (
             <div className="profile__buttons-container">

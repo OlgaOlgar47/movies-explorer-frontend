@@ -11,7 +11,6 @@ function SearchForm({
   searchedMovie,
   setServerError,
   isCheck,
-  isFirstEnterance,
   toggleCheckbox
 }) {
   const { pathname } = useLocation();
@@ -28,8 +27,8 @@ function SearchForm({
 
   function handleSearch(e) {
     e.preventDefault();
+    searchMovies(e.target.query.value);
     if (e.target.query.value) {
-      searchMovies(e.target.query.value);
       setServerError("");
     } else {
       setServerError("Нужно ввести ключевое слово");
@@ -66,7 +65,7 @@ function SearchForm({
           {serverError}
         </span>
       )}
-      <FilterCheckbox isCheck={isCheck} toggleCheckbox={toggleCheckbox} isFirstEnterance={isFirstEnterance}/>
+      <FilterCheckbox isCheck={isCheck} toggleCheckbox={toggleCheckbox}/>
     </div>
   );
 }

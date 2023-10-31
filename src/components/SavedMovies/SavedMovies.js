@@ -6,7 +6,6 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 function SavedMovies({ savedMovies, setServerError, deleteMovie }) {
   const [filteredMovies, setFilteredMovies] = useState(savedMovies);
   const [searchedMovie, setSearchedMovie] = useState("");
-  const [isFirstEnterance, setIsFirstEnterance] = useState(true);
   const [isCheck, setIsCheck] = useState(false);
 
   const filter = useCallback((query, isCheck, movies) => {
@@ -22,27 +21,19 @@ function SavedMovies({ savedMovies, setServerError, deleteMovie }) {
   }, []);
 
   function searchOnSavedMovies(query) {
-    setIsFirstEnterance(false);
     filter(query, isCheck, savedMovies);
   }
 
   useEffect(() => {
-    if (savedMovies.length === 0) {
-      setIsFirstEnterance(true);
-    } else {
-      setIsFirstEnterance(false);
-    }
     filter(searchedMovie, isCheck, savedMovies);
   }, [searchedMovie, isCheck, savedMovies, filter]);
 
   function toggleCheckbox() {
     if (isCheck) {
       setIsCheck(false);
-      setIsFirstEnterance(false);
       filter(searchedMovie, false, savedMovies);
     } else {
       setIsCheck(true);
-      setIsFirstEnterance(false);
       filter(searchedMovie, true, savedMovies);
     }
   }
@@ -61,14 +52,12 @@ function SavedMovies({ savedMovies, setServerError, deleteMovie }) {
         savedMovies={savedMovies}
         setServerError={setServerError}
         isCheck={isCheck}
-        isFirstEnterance={isFirstEnterance}
       />
       <MoviesCardList
         savedMovies={savedMovies}
         isSaved={true}
         filteredMovies={filteredMovies}
         deleteMovie={deleteMovie}
-        isFirstEnterance={isFirstEnterance}
       />
     </main>
   );

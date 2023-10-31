@@ -9,7 +9,7 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Footer from "../Footer/Footer";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../Preloaders/Preloader";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import useValidation from "../../hooks/useValidation";
 import * as MainApi from "../../utils/MainApi";

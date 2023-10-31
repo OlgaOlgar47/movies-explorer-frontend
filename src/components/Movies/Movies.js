@@ -12,7 +12,6 @@ function Movies({ setServerError, addMovie, deleteMovie, savedMovies }) {
   const [allMovies, setAllMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchedMovie, setSearchedMovie] = useState("");
-  const [isFirstEnterance, setIsFirstEnterance] = useState(true);
 
   const filter = useCallback((query, isCheck, movies) => {
     localStorage.setItem("query", JSON.stringify(query));
@@ -40,7 +39,6 @@ function Movies({ setServerError, addMovie, deleteMovie, savedMovies }) {
         .then((res) => {
           setAllMovies(res);
           setIsCheck(false);
-          setIsFirstEnterance(false);
           filter(query, isCheck, res);
         })
         .catch((err) => {
@@ -59,7 +57,6 @@ function Movies({ setServerError, addMovie, deleteMovie, savedMovies }) {
       const isCheck = JSON.parse(localStorage.shorts);
       const movies = JSON.parse(localStorage.allMovies);
       setSearchedMovie(query);
-      setIsFirstEnterance(false);
       setIsCheck(isCheck);
       setAllMovies(movies);
       filter(query, isCheck, movies);
@@ -85,7 +82,6 @@ function Movies({ setServerError, addMovie, deleteMovie, savedMovies }) {
         setServerError={setServerError}
         isCheck={isCheck}
         toggleCheckbox={toggleCheckbox}
-        isFirstEnterance={isFirstEnterance}
       />
       <MoviesCardList
         addMovie={addMovie}
@@ -95,7 +91,6 @@ function Movies({ setServerError, addMovie, deleteMovie, savedMovies }) {
         savedMovies={savedMovies}
         isSaved={false}
         beatfilmsFailed={beatfilmsFailed}
-        isFirstEnterance={isFirstEnterance}
       />
     </main>
   );

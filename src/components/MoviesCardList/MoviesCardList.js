@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./MoviesCardList.css";
-import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import Preloader from "../Preloader/Preloader";
+import PreloaderButton from "../Preloaders/PreloaderButton";
+import { classNames } from "../../utils/className";
 import {
   MaxScreen,
   mediumScreen,
@@ -16,7 +16,6 @@ import {
 } from "../../utils/constants";
 
 function MoviesCardList({
-  isfirstEnterance,
   isSaved,
   addMovie,
   deleteMovie,
@@ -25,10 +24,9 @@ function MoviesCardList({
   filteredMovies,
   savedMovies,
 }) {
-  const { pathname } = useLocation();
   const [count, setCount] = useState(counterCards().init);
-  // const [showMore, setShowMore] = useState(false);
   const moviesToShow = filteredMovies.slice(0, count);
+  const firstTime = !localStorage.getItem("allMovies");
 
   function counterCards() {
     const counter = { init: initMaxScreeen, step: stepMaxScreen };
@@ -49,25 +47,12 @@ function MoviesCardList({
 
   function clickMoreButton() {
     setCount(count + counterCards().step);
-    // setShowMore(true);
   }
 
   useEffect(() => {
     if (!isSaved) {
-      setCount(counterCards().init);
       function counterCardsForResize() {
-        if (window.innerWidth >= stepMaxScreen) {
-          setCount(counterCards().init);
-        }
-        if (window.innerWidth < stepMaxScreen) {
-          setCount(counterCards().init);
-        }
-        if (window.innerWidth < mediumScreen) {
-          setCount(counterCards().init);
-        }
-        if (window.innerWidth < smallScreen) {
-          setCount(counterCards().init);
-        }
+        setCount(counterCards().init);
       }
 
       window.addEventListener("resize", counterCardsForResize);
@@ -78,60 +63,59 @@ function MoviesCardList({
     }
   }, [isSaved]);
 
-  const cards = document.querySelector(".cards");
-  if (moviesToShow.length < 3) {
-    cards?.classList.add("centered");
-  } else {
-    cards?.classList.remove("centered");
+  function MoviesCardListContent() {
+    const movieList = (isSaved && filteredMovies.length !== 0) ? filteredMovies : moviesToShow;
+
+    if (isLoading) {
+      return <PreloaderButton />;
+    }
+    if (firstTime) {
+      return (
+        <div className="cards__no-saved-movies">
+          «Чтобы увидеть список фильмов выполните поиск»
+        </div>
+      );
+    }
+
+    if (beatfilmsFailed) {
+      return (
+        <div className="cards__no-saved-movies">
+          «Во время запроса произошла ошибка. Возможно, проблема с соединением
+          или сервер недоступен. Подождите немного и попробуйте ещё раз»"
+        </div>
+      );
+    }
+    if (isSaved && filteredMovies.length === 0) {
+      return (
+        <div className="cards__no-saved-movies">«Нет сохраненных фильмов»</div>
+      );
+    }
+
+    if (!firstTime && filteredMovies.length === 0) {
+      return <div className="cards__no-saved-movies">«Ничего не найдено»</div>;
+    }
+
+    return  movieList.map((item) => (
+      <li className="cards__item" key={!isSaved ? item.id : item._id}>
+        <MoviesCard
+          data={item}
+          isSaved={isSaved}
+          savedMovies={savedMovies}
+          addMovie={isSaved ? undefined : addMovie }
+          deleteMovie={deleteMovie}
+        />
+      </li>
+    ))
   }
 
   return (
-    <section className={isSaved ? "cards cards_isSaved" : "cards"}>
+    <section className={classNames({
+      'cards': true,
+      'cards_isSaved': isSaved,
+      'centered': moviesToShow.length === 0 || isLoading,
+    })}>
       <ul className="cards__list">
-        {isLoading ? (
-          <Preloader />
-        ) : (pathname === "/movies") && moviesToShow.length !== 0 ? (
-          moviesToShow.map((card) => (
-            <li className="cards__item" key={card.id}>
-              {/* <li className={`cards__item ${showMore ? 'cards__item_show' : ''}`} key={card.id}></li> */}
-              <MoviesCard
-                data={card}
-                isSaved={isSaved}
-                savedMovies={savedMovies}
-                addMovie={addMovie}
-                deleteMovie={deleteMovie}
-              />
-            </li>
-          ))
-        ) : (pathname === "/saved-movies") && filteredMovies.length !== 0 ? (
-          filteredMovies.map((card) => (
-            <li className="cards__item" key={card._id}>
-              <MoviesCard
-                data={card}
-                isSaved={isSaved}
-                deleteMovie={deleteMovie}
-                savedMovies={savedMovies}
-              />
-            </li>
-          ))
-        ) : beatfilmsFailed ? (
-          <span className="cards__no-saved-movies">
-            «Во время запроса произошла ошибка. Возможно, проблема с соединением
-            или сервер недоступен. Подождите немного и попробуйте ещё раз»"
-          </span>
-        ) : (pathname === "/saved-movies") && filteredMovies.length === 0 ? (
-          <span className="cards__no-saved-movies">
-            «Нет сохраненных фильмов»
-          </span>
-        ) : !isfirstEnterance ? (
-          <span className="cards__no-saved-movies">
-            «Ничего не найдено»
-          </span>
-        ) : (
-          <span className="cards__no-saved-movies">
-            «Чтобы увидеть список фильмов выполните поиск»
-          </span>
-        )}
+       <MoviesCardListContent />
       </ul>
       {isSaved ? null : (
         <button

@@ -64,7 +64,7 @@
 }
 
 .form__server-error {
-  color:#ee3465;
+  color: #ee3465;
   text-align: center;
   font-size: 11px;
   font-weight: 400;
@@ -73,6 +73,7 @@
 }
 
 .form__submit-button {
+  position: relative;
   width: 396px;
   height: 45px;
   flex-shrink: 0;
@@ -143,12 +144,6 @@
   .form {
     padding: 238px 0;
   }
-
-  .form__server-error {
-    position: absolute;
-    top: 763px;
-    left: 95px;
-  }
 }
 
 @media screen and (max-width: 567px) {
@@ -174,11 +169,15 @@
   .form__submit-button {
     width: 260px;
     font-size: 12px;
-    margin: 216px 0 14px;
+    margin: 0 0 14px;
   }
 
   .form__submit-button_login {
-    margin-top: 285px;
+    margin-top: 87px;
+  }
+
+  .form__server-error {
+    margin: 170px 0 14px;
   }
 
   .form__subtitle-text {

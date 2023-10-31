@@ -3,9 +3,9 @@ import "./Form.css";
 import logo from "../../images/logo.svg";
 import { regExpEmail } from "../../utils/constants";
 import { Link } from "react-router-dom";
-import Preloader from "../Preloader/Preloader";
 import ServerErrorContext from "../../contexts/ServerErrorContext";
 import IsSentContext from "../../contexts/IsSentContext";
+import PreloaderButton from "../Preloaders/PreloaderButton";
 
 function Form({
   isRegister,
@@ -99,7 +99,7 @@ function Form({
           !isValid || isSent ? "form__submit-button-inactive" : ""
         }`}
       >
-        {isSent ? <Preloader /> : submitText}
+        {isSent ? <PreloaderButton /> : submitText}
       </button>
       <div className="form__subtitle">
         <p className="form__subtitle-text">{formText}</p>
