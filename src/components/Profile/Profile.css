@@ -141,9 +141,6 @@
     margin-bottom: 17px;
   }
 
-  .profile__button-save {
-    margin-top: 210px;
-  }
 }
 
 @media screen and (max-width: 678px) {
@@ -157,7 +154,6 @@
   }
 
   .profile__button-save {
-    margin-top: 379px;
     font-size: 12px;
   }
 

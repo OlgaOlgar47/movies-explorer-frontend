@@ -53,8 +53,8 @@
   background: #313131;
   color: #fff;
   padding: 9px 15px;
-  max-width: 100px;
-  min-height: 29px;
+  width: 100px;
+  height: 29px;
   text-align: center;
   font-size: 12px;
   font-weight: 400;
@@ -65,8 +65,8 @@
 }
 
 .card__saved-button {
-  max-width: 100px;
-  min-height: 29px;
+  width: 100px;
+  height: 29px;
   align-self: center;
   border: none;
   margin: 18px 0;

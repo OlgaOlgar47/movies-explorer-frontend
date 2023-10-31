@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import PreloaderButton from "../Preloaders/PreloaderButton";
+import PreloaderBlock from "../Preloaders/PreloaderBlock";
 import { classNames } from "../../utils/className";
 import {
   MaxScreen,
@@ -67,7 +67,7 @@ function MoviesCardList({
     const movieList = (isSaved && filteredMovies.length !== 0) ? filteredMovies : moviesToShow;
 
     if (isLoading) {
-      return <PreloaderButton />;
+      return <PreloaderBlock />;
     }
     if (firstTime) {
       return (

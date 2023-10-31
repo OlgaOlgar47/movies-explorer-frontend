@@ -105,8 +105,15 @@ function Header({ loggedIn }) {
     }
   }
 
-  // Проверка на несуществующий путь здесь
-  if (pathname === "*") {
+  // Проверка на несуществующий путь
+  if (
+    pathname !== "/movies" &&
+    pathname !== "/saved-movies" &&
+    pathname !== "/profile" &&
+    pathname !== "/" &&
+    pathname !== "/signin" &&
+    pathname !== "/signup"
+  ) {
     return null;
   }
 

@@ -100,10 +100,6 @@ function App() {
       .finally(() => setIsSent(false));
   }
 
-  // useEffect(() => {
-  //   console.log(loggedIn);
-  // }, [loggedIn]);
-
   function onLogin(e) {
     e.preventDefault();
     setIsSent(true);
@@ -181,44 +177,44 @@ function App() {
   function handleAddMovie(data) {
     const token = localStorage.getItem("jwt");
     MainApi.addMovie(data, token)
-    .then((res) => setSavedMovies([res, ...savedMovies]))
-    .catch((err) => console.error('Ошибка при нажитии на кнопку', err))
+      .then((res) => setSavedMovies([res, ...savedMovies]))
+      .catch((err) => console.error("Ошибка при нажитии на кнопку", err));
   }
 
   function handleDeleteMovie(data) {
     const token = localStorage.getItem("jwt");
     let movieToDelete;
-    if (pathname === '/movies') {
+    if (pathname === "/movies") {
       movieToDelete = savedMovies.filter((item) => item.movieId === data.id);
     } else {
-      movieToDelete = savedMovies.filter((item) => item.movieId === data.movieId);
+      movieToDelete = savedMovies.filter(
+        (item) => item.movieId === data.movieId
+      );
     }
     MainApi.deleteMovie(movieToDelete[0]._id, token)
-    .then(() => {
-      console.log("savedMovies", savedMovies)
-      console.log("data._id", data.id)
-      if (pathname === '/movies') {
-      setSavedMovies(savedMovies.filter((movie) => { 
-        return movie.movieId !== data.id}))
-      } else {
-        console.log('пришли сюда')
-       
-        setSavedMovies(savedMovies.filter((movie) => { 
-          return movie._id !== data._id}))
+      .then(() => {
+        console.log("savedMovies", savedMovies);
+        console.log("data._id", data.id);
+        if (pathname === "/movies") {
+          setSavedMovies(
+            savedMovies.filter((movie) => {
+              return movie.movieId !== data.id;
+            })
+          );
+        } else {
+          console.log("пришли сюда");
+
+          setSavedMovies(
+            savedMovies.filter((movie) => {
+              return movie._id !== data._id;
+            })
+          );
         }
-    })
-    .catch((err) => console.error('При удалении фильма произошла ошибка', err))
+      })
+      .catch((err) =>
+        console.error("При удалении фильма произошла ошибка", err)
+      );
   }
-
-  useEffect(() => {
-    console.log("savedMovies", savedMovies)
-  }, [savedMovies])
-
-  useEffect(() => {
-    console.log("savedMovies", savedMovies);
-  }, [savedMovies]);
-
-
 
   const ProtectedMovies = () => {
     return (

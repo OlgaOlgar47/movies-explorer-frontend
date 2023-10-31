@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./MoviesCard.css";
 import deleteMovieImage from "../../images/delete-movie-button.svg";
-import savedImage from "../../images/saved-image.png"
+import savedImage from "../../images/saved-image.png";
+import { convertDuration } from "../../utils/ConvertDuration";
 
 function MoviesCard({ data, isSaved, savedMovies, addMovie, deleteMovie }) {
   const [cardIsSaved, setCardIsSaved] = useState(false);
@@ -22,20 +23,6 @@ function MoviesCard({ data, isSaved, savedMovies, addMovie, deleteMovie }) {
       addMovie(data);
     }
   }
-
-  function convertDuration(duration) {
-    const minutes = duration % 60;
-    const hours = Math.floor(duration / 60);
-    return hours === 0
-      ? `${minutes}m`
-      : minutes === 0
-      ? `${hours}ч`
-      : `${hours}ч ${minutes}м`;
-  }
-
-  // useEffect(() => {
-  //   console.log("cardIsSaved", cardIsSaved);
-  // }, [cardIsSaved]);
 
   return (
     <div className="card">

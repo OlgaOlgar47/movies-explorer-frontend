@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import "./Profile.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import useValidation from "../../hooks/useValidation";
@@ -11,6 +11,7 @@ function Profile({ onLogout, onEditProfile, setServerError, isEdit, setIsEdit })
   const currentUser = useContext(CurrentUserContext);
   const serverError = useContext(ServerErrorContext)
   const isSent = useContext(IsSentContext);
+  const [formDataChanged, setFormDataChanged] = useState(false);
   const { values, errors, isValid, onChange, setValues } = useValidation();
 
   useEffect(() => {
@@ -23,6 +24,17 @@ function Profile({ onLogout, onEditProfile, setServerError, isEdit, setIsEdit })
       email: currentUser.email,
     });
   }, [currentUser, setValues]);
+
+  const checkFormDataChanged = useCallback(() => {
+    const isNameChanged = values.name !== currentUser.name;
+    const isEmailChanged = values.email !== currentUser.email;
+    return isNameChanged || isEmailChanged;
+  },[currentUser.email, currentUser.name, values.email, values.name]);
+
+  useEffect(() => {
+    // Обновление состояния formDataChanged при изменении значений формы
+    setFormDataChanged(checkFormDataChanged());
+  }, [values, currentUser, checkFormDataChanged]);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -82,14 +94,15 @@ function Profile({ onLogout, onEditProfile, setServerError, isEdit, setIsEdit })
           {isEdit ? (
             <button
               className={
-                !isValid || isSent
+                !isValid || isSent || !formDataChanged
                   ? "profile__button-save profile__button-save_inactive"
                   : "profile__button-save"
               }
               type="submit"
-              disabled={!isValid || isSent}
+              disabled={!isValid || isSent || !formDataChanged}
             >
               {isSent ? <PreloaderButton /> : "Сохранить"}
+              {/* <PreloaderButton /> */}
             </button>
           ) : (
             <div className="profile__buttons-container">

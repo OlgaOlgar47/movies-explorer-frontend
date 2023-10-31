@@ -40,7 +40,7 @@
 }
 
 .preloader {
-    position: fixed; /* Фиксируем элемент на экране */
+    position: absolute; /* Фиксируем элемент на экране */
     top: 0;
     left: 0;
     right: 0;

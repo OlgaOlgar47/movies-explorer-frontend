@@ -1,27 +1,26 @@
 .preloader-button {
   display: inline-block;
-  position: relative;
 }
 
-.preloader__container {
+.preloader__container-button {
   width: 45px;
   height: 45px;
   position: relative;
 }
 
-.preloader__round {
+.preloader__round-button {
   width: 45px;
   height: 45px;
   position: absolute;
   top: 0;
   left: 0;
-  background: #FF6838;
+  background: #00d4ad;
   border-radius: 50px;
   animation: preloader-inside-red 1s ease-in-out infinite;
 }
 
-.preloader__round::after,
-.preloader__round::before {
+.preloader__round-button::after,
+.preloader__round-button::before {
   content: '';
   width: 45px;
   height: 45px;
@@ -31,7 +30,7 @@
   border-radius: 50px;
 }
 
-.preloader__round::after {
+.preloader__round-button::after {
   background: white;
   animation: preloader-inside-white 1s ease-in-out infinite;
 }
