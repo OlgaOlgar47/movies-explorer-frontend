@@ -192,28 +192,28 @@ function App() {
       );
   }
 
-  const ProtectedMovies = () => {
-    return (
-      <Movies
-        isSaved={false}
-        savedMovies={savedMovies}
-        addMovie={handleAddMovie}
-        deleteMovie={handleDeleteMovie}
-        setServerError={setServerError}
-      />
-    );
-  };
+  // const ProtectedMovies = () => {
+  //   return (
+  //     <Movies
+  //       isSaved={false}
+  //       savedMovies={savedMovies}
+  //       addMovie={handleAddMovie}
+  //       deleteMovie={handleDeleteMovie}
+  //       setServerError={setServerError}
+  //     />
+  //   );
+  // };
 
-  const ProtectedSavedMovies = () => {
-    return (
-      <SavedMovies
-        isSaved={true}
-        savedMovies={savedMovies}
-        deleteMovie={handleDeleteMovie}
-        setServerError={setServerError}
-      />
-    );
-  };
+  // const ProtectedSavedMovies = () => {
+  //   return (
+  //     <SavedMovies
+  //       isSaved={true}
+  //       savedMovies={savedMovies}
+  //       deleteMovie={handleDeleteMovie}
+  //       setServerError={setServerError}
+  //     />
+  //   );
+  // };
 
   return (
     <>
@@ -232,8 +232,13 @@ function App() {
                       path="/movies"
                       element={
                         <ProtectedRoute
-                          element={ProtectedMovies}
+                          element={Movies}
                           loggedIn={loggedIn}
+                          isSaved={false}
+                          savedMovies={savedMovies}
+                          addMovie={handleAddMovie}
+                          deleteMovie={handleDeleteMovie}
+                          setServerError={setServerError}
                         />
                       }
                     />
@@ -241,8 +246,12 @@ function App() {
                       path="/saved-movies"
                       element={
                         <ProtectedRoute
-                          element={ProtectedSavedMovies}
+                          element={SavedMovies}
                           loggedIn={loggedIn}
+                          isSaved={true}
+                          savedMovies={savedMovies}
+                          deleteMovie={handleDeleteMovie}
+                          setServerError={setServerError}
                         />
                       }
                     />
