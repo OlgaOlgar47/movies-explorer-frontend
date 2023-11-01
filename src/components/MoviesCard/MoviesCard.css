@@ -50,7 +50,7 @@
 
 .card__save-button {
   border-radius: 30px;
-  background: #313131;
+  background-color: #313131;
   color: #fff;
   padding: 9px 15px;
   width: 100px;
@@ -62,15 +62,13 @@
   align-self: center;
   border: none;
   margin: 18px 0;
+  transition: background-color 0.7s ease-in-out;
 }
 
-.card__saved-button {
-  width: 100px;
-  height: 29px;
-  align-self: center;
-  border: none;
-  margin: 18px 0;
-  background: none;
+.card__save-button_saved {
+  background-color: #EE3465; /* Розовый цвет */
+  color: #fff; /* Белый цвет текста */
+  transition: background-color 0.7s ease-in-out;
 }
 
 .card__saved-button:hover {

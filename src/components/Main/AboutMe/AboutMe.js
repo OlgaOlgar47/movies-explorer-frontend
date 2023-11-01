@@ -1,6 +1,6 @@
 import React from "react";
 import "./AboutMe.css";
-import { gitHubURL}  from "../../../utils/constants";
+import { GITHUB_URL }  from "../../../utils/constants";
 
 function AboutMe() {
   return (
@@ -20,7 +20,7 @@ function AboutMe() {
             После того, как прошёл курс по&nbsp;веб-разработке, начал заниматься
             фриланс-заказами и&nbsp;ушёл с&nbsp;постоянной работы.
           </p>
-          <a target="_blank" rel="noreferrer" href={gitHubURL} className="about-me__github">Github</a>
+          <a target="_blank" rel="noreferrer" href={GITHUB_URL} className="about-me__github">Github</a>
         </div>
         <div className="student-foto"></div>
       </div>

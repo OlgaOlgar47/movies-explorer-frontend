@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useCallback } from "react";
+import { React, useState, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.js";
@@ -131,28 +131,6 @@ function App() {
       });
   }
 
-  const tokenCheck = useCallback(() => {
-    const token = localStorage.getItem("jwt");
-    if (token && !loggedIn) {
-      MainApi.getUserData(token)
-        .then((res) => {
-          if (res) {
-            setCurrentUser(res);
-            setLoggedIn(true);
-            isCheckToken(false);
-            navigate("/movies", { replace: true });
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [setLoggedIn, navigate, loggedIn, isCheckToken]);
-
-  useEffect(() => {
-    tokenCheck();
-  }, [tokenCheck]);
-
   const showFooter = () => {
     return (
       pathname === "/" || pathname === "/movies" || pathname === "/saved-movies"
@@ -202,8 +180,6 @@ function App() {
             })
           );
         } else {
-          console.log("пришли сюда");
-
           setSavedMovies(
             savedMovies.filter((movie) => {
               return movie._id !== data._id;

@@ -12,8 +12,8 @@ function InfoTooltip(props) {
           onClick={onClose}
         ></button>
         <img
-          className="popup__authorization__infotooltip-image"
-          alt={name}
+          className="popup__infotooltip-image"
+          alt="картинка успех выполненной операции"
           src={imagePath}
         ></img>
         <h2 className="popup__title popup__title_type_success">{title}</h2>

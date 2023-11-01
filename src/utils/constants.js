@@ -1,28 +1,28 @@
-const MaxScreen = 1280;
-const mediumScreen = 1276;
-const smallScreen = 768;
-const initMaxScreeen = 12;
-const initMediumScreeen = 8;
-const initSmallScreeen = 5;
-const stepMaxScreen = 3;
-const stepMediumScreen = 2;
-const stepSmallScreen = 2;
-const shortsDuration = 40;
-const regExpEmail = "^\\S+@\\S+\\.\\S+$";
-const gitHubURL = "https://github.com/OlgaOlgar47";
-
+const MAX_SCREEN = 1280;
+const MEDIUM_SCREEN = 1276;
+const SMALL_SCREEN = 768;
+const INIT_MAX_SCREEN = 12;
+const INIT_MEDIUM_SCREEN = 8;
+const INIT_SMALL_SCREEN = 5;
+const STEP_MAX_SCREEN = 3;
+const STEP_MEDIUM_SCREEN = 2;
+const STEP_SMALL_SCREEN = 2;
+const SHORTS_DURATION = 40;
+const REGEXP_EMAIL = "^\\S+@\\S+\\.\\S+$";
+const GITHUB_URL = "https://github.com/OlgaOlgar47";
 
 export {
-  MaxScreen,
-  mediumScreen,
-  smallScreen,
-  initMaxScreeen,
-  initMediumScreeen,
-  initSmallScreeen,
-  stepMaxScreen,
-  stepMediumScreen,
-  stepSmallScreen,
-  regExpEmail,
-  shortsDuration,
-  gitHubURL,
+  MAX_SCREEN,
+  MEDIUM_SCREEN,
+  SMALL_SCREEN,
+  INIT_MAX_SCREEN,
+  INIT_MEDIUM_SCREEN,
+  INIT_SMALL_SCREEN,
+  STEP_MAX_SCREEN,
+  STEP_MEDIUM_SCREEN,
+  STEP_SMALL_SCREEN,
+  SHORTS_DURATION,
+  REGEXP_EMAIL,
+  GITHUB_URL,
 };
+

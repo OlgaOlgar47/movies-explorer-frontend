@@ -60,7 +60,7 @@
   line-height: normal;
   display: flex;
   justify-content: center;
-  margin-top: 20px 0 0;
+  margin: 20px 0 0;
 }
 
 @media screen and (max-width: 567px) {

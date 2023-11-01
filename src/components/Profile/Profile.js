@@ -4,7 +4,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import useValidation from "../../hooks/useValidation";
 import IsSentContext from "../../contexts/IsSentContext";
 import PreloaderButton from "../Preloaders/PreloaderButton";
-import { regExpEmail } from "../../utils/constants";
+import { REGEXP_EMAIL } from "../../utils/constants";
 import ServerErrorContext from "../../contexts/ServerErrorContext";
 
 function Profile({ onLogout, onEditProfile, setServerError, isEdit, setIsEdit }) {
@@ -79,14 +79,14 @@ function Profile({ onLogout, onEditProfile, setServerError, isEdit, setIsEdit })
                 className="profile__input"
                 required
                 value={values.email || ""}
-                pattern={regExpEmail}
+                pattern={REGEXP_EMAIL}
                 onChange={(e) => {
                   onChange(e);
                   setServerError("");
                 }}
               ></input>
             </label>
-            <span className="profile__error" id="name-error">
+            <span className="profile__error" id="email-error">
               {errors.email || ""}
             </span>
           </div>

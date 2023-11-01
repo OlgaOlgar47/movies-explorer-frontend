@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./Form.css";
 import logo from "../../images/logo.svg";
-import { regExpEmail } from "../../utils/constants";
+import { REGEXP_EMAIL } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import ServerErrorContext from "../../contexts/ServerErrorContext";
 import IsSentContext from "../../contexts/IsSentContext";
@@ -67,7 +67,7 @@ function Form({
             setServerError("");
           }}
           value={values.email || ""}
-          pattern={regExpEmail}
+          pattern={REGEXP_EMAIL}
         />
         <span className="form__input-error">{errors.email || ""}</span>
       </label>

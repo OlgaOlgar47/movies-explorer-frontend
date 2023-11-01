@@ -15,8 +15,8 @@
 }
 
 .popup_fadeout {
-    opacity: 0;
-  }
+  opacity: 0;
+}
 
 .popup_opened {
   opacity: 1;
@@ -41,12 +41,6 @@
   align-items: center;
 }
 
-.popup__container_type_auth {
-  font-family: "Inter", Arial, sans-serif;
-  color: white;
-  background-color: black;
-}
-
 .popup__close {
   background: transparent url(../../images/closeIcon.svg);
   background-repeat: no-repeat;
@@ -65,7 +59,7 @@
   opacity: 0.6;
 }
 
-.popup__authorization__infotooltip-image {
+.popup__infotooltip-image {
   background-color: transparent;
   background-position: center;
   background-repeat: no-repeat;

@@ -11,6 +11,8 @@
 }
 
 .cards__no-saved-movies {
+  margin: 0 auto;
+  padding: 0;
   color: #fff;
   opacity: 0.5;
   text-align: center;

@@ -8,16 +8,6 @@ const getResponseData = (res) => {
 
 };
 
-// const getResponseData = async (res) => {
-//   const data = await res.json();
-
-//   if (!res.ok) {
-//     return Promise.reject(`Ошибка: ${data.message}`);
-//   }
-
-//   return data;
-// };
-
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",

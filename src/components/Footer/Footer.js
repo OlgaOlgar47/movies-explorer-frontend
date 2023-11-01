@@ -1,6 +1,6 @@
 import React from "react";
 import './Footer.css';
-import { gitHubURL } from "../../utils/constants";
+import { GITHUB_URL } from "../../utils/constants";
 
 function Footer() {
     return (
@@ -9,7 +9,7 @@ function Footer() {
            <div className="footer__container">
            <div className="footer__copyright">&copy;{new Date().getFullYear()}</div>
            <a className="footer__link" href="https://practicum.yandex.ru" target="_blank" rel="noreferrer">Яндекс.Практикум</a>
-           <a className="footer__link" href={gitHubURL} target="_blank" rel="noreferrer">Github</a>
+           <a className="footer__link" href={GITHUB_URL} target="_blank" rel="noreferrer">Github</a>
            </div>
         </footer>
     )

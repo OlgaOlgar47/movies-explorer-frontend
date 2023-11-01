@@ -3,7 +3,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./Movies.css";
 import moviesApi from "../../utils/MoviesApi";
-import { shortsDuration } from "../../utils/constants";
+import { SHORTS_DURATION } from "../../utils/constants";
 
 function Movies({ setServerError, addMovie, deleteMovie, savedMovies }) {
   const [isCheck, setIsCheck] = useState(false);
@@ -24,7 +24,7 @@ function Movies({ setServerError, addMovie, deleteMovie, savedMovies }) {
         .toLowerCase()
         .includes(query.toLowerCase());
       return isCheck
-        ? searchName && movie.duration <= shortsDuration
+        ? searchName && movie.duration <= SHORTS_DURATION
         : searchName;
     });
     setFilteredMovies(filtered);

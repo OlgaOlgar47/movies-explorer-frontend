@@ -18,7 +18,7 @@ function Login(props) {
         link="/signup"
         formText="Ещё не зарегистрированы?"
         linkText="Регистрация"
-        submitButtonForLogin="form__submit-button_login"
+        submitButtonForLogin="form__submit-button-login"
         onSubmit={onLogin}
         values={values}
         errors={errors}
