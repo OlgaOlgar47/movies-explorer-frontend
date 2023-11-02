@@ -6,10 +6,10 @@ import profileDark from "../../images/profile-dark.svg";
 const setActive = ({ isActive }) =>
   `navigation__button ${isActive ? "navigation__button_active" : ""}`;
 
-function Navigation({ onClose }) {
+function Navigation({ onClose, onClick }) {
   return (
     <section className="navigation">
-      <div className="navigation__overlay">
+      <div className="navigation__overlay" onClick={onClick}>
         <div className="navigation__container">
           <div className="navigation__menu">
             <button

@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Header.css";
 import logo from "../../images/logo.svg";
@@ -12,12 +12,34 @@ function HeaderLoggedIn({ isMain }) {
   const [isClicked, setIsClicked] = useState(false);
 
   function handleOpenBurgerMenu() {
+    console.log("Burger menu opened");
     setIsClicked(true);
   }
 
-  function handleCloseBurgerMenu() {
+  const handleCloseBurgerMenu = () => {
+    console.log("Burger menu closed");
     setIsClicked(false);
-  }
+  };
+
+  useEffect(() => {
+    const handleEscapeKey = (e) => {
+      if (e.key === "Escape") {
+        handleCloseBurgerMenu();
+      }
+    };
+    if (isClicked) {
+      document.addEventListener("keydown", handleEscapeKey);
+    }
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [isClicked]);
+
+  const handleOverlay = (e) => {
+    if (e.target === e.currentTarget) {
+      handleCloseBurgerMenu();
+    }
+  };
 
   return (
     <header className={isMain ? "header" : "header header_color"}>
@@ -63,7 +85,11 @@ function HeaderLoggedIn({ isMain }) {
           ></img>
         </button>
       </nav>
-      {isClicked ? <Navigation onClose={handleCloseBurgerMenu} /> : ""}
+      {isClicked ? (
+        <Navigation onClose={handleCloseBurgerMenu} onClick={handleOverlay} />
+      ) : (
+        ""
+      )}
     </header>
   );
 }

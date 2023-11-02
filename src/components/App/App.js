@@ -171,8 +171,6 @@ function App() {
     }
     MainApi.deleteMovie(movieToDelete[0]._id, token)
       .then(() => {
-        console.log("savedMovies", savedMovies);
-        console.log("data._id", data.id);
         if (pathname === "/movies") {
           setSavedMovies(
             savedMovies.filter((movie) => {
@@ -191,29 +189,6 @@ function App() {
         console.error("При удалении фильма произошла ошибка", err)
       );
   }
-
-  // const ProtectedMovies = () => {
-  //   return (
-  //     <Movies
-  //       isSaved={false}
-  //       savedMovies={savedMovies}
-  //       addMovie={handleAddMovie}
-  //       deleteMovie={handleDeleteMovie}
-  //       setServerError={setServerError}
-  //     />
-  //   );
-  // };
-
-  // const ProtectedSavedMovies = () => {
-  //   return (
-  //     <SavedMovies
-  //       isSaved={true}
-  //       savedMovies={savedMovies}
-  //       deleteMovie={handleDeleteMovie}
-  //       setServerError={setServerError}
-  //     />
-  //   );
-  // };
 
   return (
     <>
