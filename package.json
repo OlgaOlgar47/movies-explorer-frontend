@@ -17,7 +17,8 @@
     "start": "react-scripts start --port 3001",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build &&  scp -r ./build/* olga@158.160.58.142:/home/olga/movies-explorer-frontend"
   },
   "eslintConfig": {
     "extends": [
