@@ -5,7 +5,6 @@ const getResponseData = (res) => {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
   return res.json();
-
 };
 
 export const register = (name, email, password) => {

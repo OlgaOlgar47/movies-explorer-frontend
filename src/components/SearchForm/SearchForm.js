@@ -27,8 +27,8 @@ function SearchForm({
 
   function handleSearch(e) {
     e.preventDefault();
-    searchMovies(e.target.query.value);
     if (e.target.query.value) {
+      searchMovies(e.target.query.value);
       setServerError("");
     } else {
       setServerError("Нужно ввести ключевое слово");
