@@ -20,6 +20,9 @@
   font-size: 15px;
   font-weight: 500;
   line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card__duration {
@@ -29,6 +32,7 @@
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
+  white-space: nowrap;
 }
 
 .card__image {
@@ -39,13 +43,18 @@
   transition: 0.8s ease-in-out;
 }
 
+.card__image:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
 .card__save-button {
   border-radius: 30px;
-  background: #313131;
+  background-color: #313131;
   color: #fff;
   padding: 9px 15px;
-  max-width: 100px;
-  min-height: 29px;
+  width: 100px;
+  height: 29px;
   text-align: center;
   font-size: 12px;
   font-weight: 400;
@@ -53,6 +62,18 @@
   align-self: center;
   border: none;
   margin: 18px 0;
+  transition: background-color 0.7s ease-in-out;
+}
+
+.card__save-button_saved {
+  background-color: #EE3465; /* Розовый цвет */
+  color: #fff; /* Белый цвет текста */
+  transition: background-color 0.7s ease-in-out;
+}
+
+.card__saved-button:hover {
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 .card__save-button:hover {

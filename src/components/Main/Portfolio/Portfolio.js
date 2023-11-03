@@ -3,7 +3,7 @@ import "./Portfolio.css";
 import arrow from "../../../images/arrow.svg";
 
 function Portfolio() {
-  const statitWebSite = "https://github.com/OlgaOlgar47/cars-hw";
+  const statitWebSite = "https://olgaolgar47.github.io/cars-hw/";
   const responsiveWebSite = "https://github.com/OlgaOlgar47/russian-travel";
   const SPA = "https://github.com/OlgaOlgar47/react-mesto-auth";
 

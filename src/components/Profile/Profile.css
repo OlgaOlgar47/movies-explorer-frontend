@@ -1,4 +1,5 @@
 .profile {
+  position: relative;
   padding: 74px 0 70px;
   color: #fff;
   display: flex;
@@ -41,6 +42,24 @@
   border: none;
 }
 
+.profile__error {
+  color: #ee3465;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  height: 12px;
+  margin: 6px 0;
+}
+
+.profile__server-error {
+  color: #ee3465;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 400;
+  height: 14px;
+  margin: 186px 0 20px;
+}
+
 .profile__input::placeholder {
   color: #fff;
 }
@@ -50,19 +69,46 @@
   margin: 16px 0 16px;
 }
 
-.profile__button-save {
+.profile__button-edit {
   color: #fff;
   text-align: center;
   font-size: 13px;
   font-weight: 400;
   background: #202020;
   border: none;
-  margin: 220px 0 16px;
+  margin: 0 0 16px;
 }
 
-.profile__button-save:hover {
+.profile__button-edit:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+.profile__button-save {
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 3px;
+  background: #3456f3;
+  color: #fff;
+  height: 45px;
+  width: 100%;
+  border: none;
+}
+
+.profile__button-save_inactive {
+  background: #f8f8f8;
+  color: #c2c2c2;
+  cursor: none;
+}
+
+.profile__button-save_inactive:hover {
+  cursor: auto;
+  opacity: 1;
+}
+
+.profile__buttons-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .profile__button-logout {
@@ -95,9 +141,6 @@
     margin-bottom: 17px;
   }
 
-  .profile__button-save {
-    margin-top: 210px;
-  }
 }
 
 @media screen and (max-width: 678px) {
@@ -111,7 +154,6 @@
   }
 
   .profile__button-save {
-    margin-top: 379px;
     font-size: 12px;
   }
 

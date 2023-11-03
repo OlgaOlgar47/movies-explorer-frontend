@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Form from "../Form/Form";
 
-function Register() {
+function Register(props) {
+  const { onRegister, values, errors, onChange, isValid, setServerError } = props;
+
+  useEffect(() => {
+    setServerError("");
+  }, [setServerError]);
+
   return (
     <section>
-    <Form
-      isRegister={true}
-      title="Добро пожаловать!"
-      name="Виталий"
-      email="pochta@yandex.ru"
-      submitText="Зарегистрироваться"
-      link="/signin"
-      formText="Уже зарегистрированы?"
-      linkText="Войти"
-    />
+      <Form
+        isRegister={true}
+        setServerError={setServerError}
+        title="Добро пожаловать!"
+        submitText="Зарегистрироваться"
+        submitButtonForLogin=""
+        link="/signin"
+        formText="Уже зарегистрированы?"
+        linkText="Войти"
+        onSubmit={onRegister}
+        values={values}
+        errors={errors}
+        onChange={onChange}
+        isValid={isValid}
+      />
     </section>
   );
 }

@@ -40,13 +40,17 @@
 }
 
 .preloader {
+    position: absolute; /* Фиксируем элемент на экране */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
     z-index: 10;
     padding: 20px;
+    background: #202020; /* Цвет фона */
 }
 
 .preloader__container {
@@ -63,6 +67,9 @@
     left: 0;
     background: #3DDC84;
     border-radius: 50px;
+    top: 50%; /* Располагаем по вертикали по центру экрана */
+    left: 50%; /* Располагаем по горизонтали по центру экрана */
+    transform: translate(-50%, -50%);
 }
 
 .preloader__round::after,

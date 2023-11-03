@@ -59,12 +59,12 @@
 }
 
 .header__burger-menu-button {
-  background: url("../../images/burger-menu-button.svg") no-repeat;
   width: 44px;
   height: 44px;
   display: none;
   cursor: pointer;
   border: none;
+  background: none;
 }
 
 .header__burger-menu-button:hover {

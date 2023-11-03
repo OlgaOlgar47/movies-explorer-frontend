@@ -6,10 +6,10 @@ import profileDark from "../../images/profile-dark.svg";
 const setActive = ({ isActive }) =>
   `navigation__button ${isActive ? "navigation__button_active" : ""}`;
 
-function Navigation({ onClose }) {
+function Navigation({ onClose, onClick }) {
   return (
     <section className="navigation">
-      <div className="navigation__overlay">
+      <div className="navigation__overlay" onClick={onClick}>
         <div className="navigation__container">
           <div className="navigation__menu">
             <button
@@ -18,13 +18,13 @@ function Navigation({ onClose }) {
               onClick={onClose}
             ></button>
             <nav className="navigation__links">
-              <NavLink exact to="/" className={setActive}>
+              <NavLink exact="true" to="/" className={setActive}>
                 Главная
               </NavLink>
-              <NavLink exact to="/movies" className={setActive}>
+              <NavLink exact="true" to="/movies" className={setActive}>
                 Фильмы
               </NavLink>
-              <NavLink exact to="/saved-movies" className={setActive}>
+              <NavLink exact="true" to="/saved-movies" className={setActive}>
                 Сохранённые фильмы
               </NavLink>
               <Link to="/profile" className="navigation__profile">
