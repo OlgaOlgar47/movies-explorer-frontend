@@ -1,6 +1,6 @@
 import React from "react";
 import "./AboutMe.css";
-import { GITHUB_URL }  from "../../../utils/constants";
+import { GITHUB_URL } from "../../../utils/constants";
 
 function AboutMe() {
   return (
@@ -8,19 +8,27 @@ function AboutMe() {
       <h2 className="title">Студент</h2>
       <div className="about-me__container">
         <div className="about-me__text-container">
-          <h3 className="about-me__title">Виталий</h3>
+          <h3 className="about-me__title">Ольга</h3>
           <p className="about-me__subtitle">
-            Фронтенд-разработчик, 30&nbsp;лет
+            Фронтенд-разработчик, 31&nbsp;год
           </p>
           <p className="about-me__text">
-            Я&nbsp;родился и&nbsp;живу в&nbsp;Саратове, закончил факультет
-            экономики СГУ. У&nbsp;меня есть жена и&nbsp;дочь. Я&nbsp;люблю
-            слушать музыку, а&nbsp;ещё увлекаюсь бегом. Недавно начал кодить.
-            С&nbsp;2015 года работал в&nbsp;компании &laquo;СКБ Контур&raquo;.
-            После того, как прошёл курс по&nbsp;веб-разработке, начал заниматься
-            фриланс-заказами и&nbsp;ушёл с&nbsp;постоянной работы.
+            Я&nbsp;живу в&nbsp;Латинской Америке, закончила факультет управления
+            РАНХиГС в&nbsp;Росиии, Екатеринбург. Я&nbsp;люблю слушать музыку
+            и&nbsp;гулять по&nbsp;пляжу со&nbsp;своей собакой. Недавно начала
+            кодить. С&nbsp;2015 года работала на&nbsp;кораблях и&nbsp;яхтах.
+            После того, как прошла курс по&nbsp;веб-разработке, начала
+            заниматься фриланс-заказами и&nbsp;ушла с&nbsp;постоянной морской
+            работы.
           </p>
-          <a target="_blank" rel="noreferrer" href={GITHUB_URL} className="about-me__github">Github</a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href={GITHUB_URL}
+            className="about-me__github"
+          >
+            Github
+          </a>
         </div>
         <div className="student-foto"></div>
       </div>

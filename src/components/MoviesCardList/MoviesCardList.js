@@ -31,7 +31,7 @@ function MoviesCardList({
   function counterCards() {
     const counter = { init: INIT_MAX_SCREEN, step: STEP_MAX_SCREEN };
     if (window.innerWidth < MAX_SCREEN) {
-      counter.init = INIT_MAX_SCREEN;
+      counter.init = INIT_MEDIUM_SCREEN;
       counter.step = STEP_MEDIUM_SCREEN;
     }
     if (window.innerWidth < MEDIUM_SCREEN) {
